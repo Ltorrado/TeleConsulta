@@ -4,13 +4,16 @@ var Https = require('https');
 var Config = require('../config');
 var Common = require('./common');
 var Rooms = require('../data/rooms');
+var Request = require("request");
+
 
 var rooms = new Rooms();
 
 var addClientToRoom = function (request, roomId, clientId, isLoopback, callback) {
-  var key = Common.getCacheKeyForRoom(request.headers.host, roomId);
+  var key = Common.getCacheKeyForRoom(request.headers.host,roomId);
 
   rooms.createIfNotExist(key, function (error, room) {
+    debugger
     var error = null;
     var isInitiator = false;
     var messages = [];
@@ -24,26 +27,33 @@ var addClientToRoom = function (request, roomId, clientId, isLoopback, callback)
       });
 
       return;
-    } else if (room.hasClient(clientId)) {
-      error = Config.constant.RESPONSE_DUPLICATE_CLIENT;
-      callback(error, {
-        messages: messages,
-        room_state: room.toString()
-      });
+    }  else {
 
-      return;
-    } else {
-      room.join(clientId, function (error, client, otherClient) {
-        if (error) {
+      if (room.hasClient(clientId)) {
+        error = Config.constant.RESPONSE_DUPLICATE_CLIENT;
+        removeClientFromRoom(request.headers['host'], roomId, clientId, function (error, result) {
+          if (error) {
+            console.log('Room ' + roomId + ' has state ' + result.room_state);
+          }
+    
+          console.log('Room ' + roomId + ' has state ' + result.room_state);
+         
+        });
+        
+      }
+
+
+
+      room.join(clientId, function (error, client, otherClient){
+        if(error){
           callback(error, {
             messages: messages,
             room_state: null
           });
-
           return;
         }
-
         if (client.isInitiator && isLoopback) {
+          debugger
           room.join(Config.constant.LOOPBACK_CLIENT_ID);
         }
 
@@ -167,27 +177,43 @@ exports.main = {
     var key = Common.getCacheKeyForRoom(request.headers['host'], roomId);
 
     rooms.get(key, function (error, room) {
-      if (room) {
-        console.log('Room ' + roomId + ' has state ' + room.toString());
+      // if (room) {
+      //   console.log('Room ' + roomId + ' has state ' + room.toString());
 
-        if (room.getOccupancy() >= 2) {
-          console.log('Room ' + roomId + ' is full');
-          reply.view('full_template', {});
+      //   if (room.getOccupancy() >= 2) {
+      //     console.log('Room ' + roomId + ' is full');
+      //     reply.view('full_template', {});
 
-          return;
-        }
+      //     return;
+      //   }
+      // }
+
+
+
+   Request.get("http://localhost:56508/api/Cita/ObtenerTextoPorCita?identificador="+roomId, (error, response, body) => {
+      if(error) {
+          return console.dir(error);
       }
-
-      var params = Common.getRoomParameters(request, roomId, null, null);
+      DatosCita = JSON.parse(body);
+      
+      var params = Common.getRoomParameters(request, DatosCita.roomId, DatosCita.clienteId, null);
+      params["textoMostrar"] =DatosCita.mensaje
+      
       reply.view('index_template', params);
+  });
+
+
+
+ 
     });
   }
 };
 
 exports.join = {
   handler: function (request, reply) {
+    debugger
     var roomId = request.params.roomId;
-    var clientId = Common.generateRandom(8);
+    var clientId = request.params.clientId;
     var isLoopback = request.params.debug == 'loopback';
     var response = null;
 

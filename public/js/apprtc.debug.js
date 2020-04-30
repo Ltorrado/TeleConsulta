@@ -3519,6 +3519,7 @@ var remoteVideo = $("#remote-video");
 var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
 rejoinLink:"#rejoin-link", roomLinkHref:"#room-link-href", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
 var AppController = function(loadingParams) {
+  debugger
   trace("Initializing; server= " + loadingParams.roomServer + ".");
   trace("Initializing; room=" + loadingParams.roomId + ".");
   this.hangupSvg_ = $(UI_CONSTANTS.hangupSvg);
@@ -3540,13 +3541,16 @@ var AppController = function(loadingParams) {
   this.muteAudioIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteAudioSvg);
   this.muteVideoIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteVideoSvg);
   this.fullscreenIconSet_ = new AppController.IconSet_(UI_CONSTANTS.fullscreenSvg);
+  debugger
   this.loadingParams_ = loadingParams;
   this.loadUrlParams_();
   var paramsPromise = Promise.resolve({});
   if (this.loadingParams_.paramsFunction) {
+    
     paramsPromise = this.loadingParams_.paramsFunction();
   }
   Promise.resolve(paramsPromise).then(function(newParams) {
+    debugger
     if (newParams) {
       Object.keys(newParams).forEach(function(key) {
         this.loadingParams_[key] = newParams[key];
@@ -3562,6 +3566,7 @@ var AppController = function(loadingParams) {
         $(UI_CONSTANTS.confirmJoinRoomSpan).textContent = ' "' + this.loadingParams_.roomId + '"';
       }
       var confirmJoinDiv = $(UI_CONSTANTS.confirmJoinDiv);
+      
       this.show_(confirmJoinDiv);
       $(UI_CONSTANTS.confirmJoinButton).onclick = function() {
         this.hide_(confirmJoinDiv);
@@ -3580,6 +3585,7 @@ var AppController = function(loadingParams) {
   }.bind(this));
 };
 AppController.prototype.createCall_ = function() {
+  debugger
   var privacyLinks = $(UI_CONSTANTS.privacyLinks);
   this.hide_(privacyLinks);
   this.call_ = new Call(this.loadingParams_);
@@ -3635,7 +3641,9 @@ AppController.prototype.setupUi_ = function() {
   setUpFullScreen();
 };
 AppController.prototype.finishCallSetup_ = function(roomId) {
+  debugger
   this.call_.start(roomId);
+  debugger
   this.setupUi_();
   if (!isChromeApp()) {
     window.onbeforeunload = function() {
@@ -3647,7 +3655,8 @@ AppController.prototype.finishCallSetup_ = function(roomId) {
         location.href = location.origin;
       } else {
         if (event.state.roomLink) {
-          location.href = event.state.roomLink;
+         // location.href = location.origin;
+         //location.href = event.state.roomLink;
         }
       }
     };
@@ -3808,7 +3817,7 @@ AppController.prototype.displaySharingInfo_ = function(roomId, roomLink) {
   this.roomLinkHref_.href = roomLink;
   this.roomLinkHref_.text = roomLink;
   this.roomLink_ = roomLink;
-  this.pushCallNavigation_(roomId, roomLink);
+ // this.pushCallNavigation_(roomId, roomLink);
   this.activate_(this.sharingDiv_);
 };
 AppController.prototype.displayStatus_ = function(status) {
@@ -3892,6 +3901,8 @@ AppController.prototype.iconEventSetup_ = function() {
 AppController.prototype.loadUrlParams_ = function() {
   var DEFAULT_VIDEO_CODEC = "VP9";
   var urlParams = queryStringToDictionary(window.location.search);
+  debugger
+  this.loadingParams_.MensajeListo= urlParams["textoMostrar"];
   this.loadingParams_.audioSendBitrate = urlParams["asbr"];
   this.loadingParams_.audioSendCodec = urlParams["asc"];
   this.loadingParams_.audioRecvBitrate = urlParams["arbr"];
@@ -3918,7 +3929,9 @@ AppController.IconSet_.prototype.toggle = function() {
   }
 };
 var Call = function(params) {
+  debugger
   this.params_ = params;
+  this.MensajeListo = this.params_.textoMostrar
   this.roomServer_ = params.roomServer || "";
   this.channel_ = new SignalingChannel(params.wssUrl, params.wssPostUrl);
   this.channel_.onmessage = this.onRecvSignalingChannelMessage_.bind(this);
@@ -4079,12 +4092,14 @@ Call.prototype.toggleAudioMute = function() {
   trace("Audio " + (audioTracks[0].enabled ? "unmuted." : "muted."));
 };
 Call.prototype.connectToRoom_ = function(roomId) {
+  debugger
   this.params_.roomId = roomId;
   var channelPromise = this.channel_.open().catch(function(error) {
     this.onError_("WebSocket open error: " + error.message);
     return Promise.reject(error);
   }.bind(this));
   var joinPromise = this.joinRoom_().then(function(roomParams) {
+    debugger
     this.params_.clientId = roomParams.client_id;
     this.params_.roomId = roomParams.room_id;
     this.params_.roomLink = roomParams.room_link;
@@ -4095,6 +4110,7 @@ Call.prototype.connectToRoom_ = function(roomId) {
     return Promise.reject(error);
   }.bind(this));
   Promise.all([channelPromise, joinPromise]).then(function() {
+    debugger
     this.channel_.register(this.params_.roomId, this.params_.clientId);
     Promise.all([this.getIceServersPromise_, this.getMediaPromise_]).then(function() {
       this.startSignaling_();
@@ -4207,6 +4223,7 @@ Call.prototype.createPcClient_ = function() {
   trace("Created PeerConnectionClient");
 };
 Call.prototype.startSignaling_ = function() {
+  debugger
   trace("Starting signaling.");
   if (this.isInitiator() && this.oncallerstarted) {
     this.oncallerstarted(this.params_.roomId, this.params_.roomLink);
@@ -4228,11 +4245,13 @@ Call.prototype.startSignaling_ = function() {
   }.bind(this));
 };
 Call.prototype.joinRoom_ = function() {
+  debugger
   return new Promise(function(resolve, reject) {
     if (!this.params_.roomId) {
       reject(Error("Missing room id."));
     }
-    var path = this.roomServer_ + "/join/" + this.params_.roomId + window.location.search;
+    debugger
+    var path = this.roomServer_ + "/join/" + this.params_.roomId +"/"+this.params_.clientid+ window.location.search;
     sendAsyncUrlRequest("POST", path).then(function(response) {
       var responseObj = parseJSON(response);
       if (!responseObj) {
@@ -4240,10 +4259,11 @@ Call.prototype.joinRoom_ = function() {
         return;
       }
       if (responseObj.result !== "SUCCESS") {
+        debugger
         reject(Error("Registration error: " + responseObj.result));
         if (responseObj.result === "FULL") {
           var getPath = this.roomServer_ + "/r/" + this.params_.roomId + window.location.search;
-          window.location.assign(getPath);
+         // window.location.assign(getPath);
         }
         return;
       }
@@ -5784,6 +5804,7 @@ function $(selector) {
   return document.querySelector(selector);
 }
 function queryStringToDictionary(queryString) {
+  debugger
   var pairs = queryString.slice(1).split("&");
   var result = {};
   pairs.forEach(function(pair) {

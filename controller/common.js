@@ -2,6 +2,7 @@ var Url = require('url');
 var Util = require('util');
 var Querystring = require('querystring');
 var Config = require('../config');
+var Request = require("request");
 
 var getHdDefault = function (userAgent) {
   if (typeof userAgent !== 'undefined') {
@@ -134,6 +135,7 @@ var getVersionInfo = function () {
 };
 
 var generateRandom = function (length) {
+  
   var word = '';
 
   for (var i = 0; i < length; i++) {
@@ -143,10 +145,29 @@ var generateRandom = function (length) {
   return word;
 };
 
-exports.getRoomParameters = function (request, roomId, clientId, isInitiator) {
+
+
+var TextoMostrar
+exports.ObtenerMensajeMostrar= function(room_id,callback) {
+
+
+  Request.get("http://localhost:56508/api/Cita/ObtenerTextoPorCita?identificador="+room_id, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    TextoMostrar = body;
+    
+    callback()
+});
+}
+
+
+exports.getRoomParameters =  function (request, roomId, clientId, isInitiator) {
+ try{
+
+  debugger
   var errorMessages = [];
   var warningMessages = [];
-
   var userAgent = request.headers['user-agent'];
   var responseType = request.params.t;
   var iceTransports = request.params.it;
@@ -227,6 +248,7 @@ exports.getRoomParameters = function (request, roomId, clientId, isInitiator) {
   }
 
   if (roomId) {
+    debugger
     params['room_id'] = roomId;
     params['room_link'] =  protocol + '//' + request.headers['host'] + '/r/' + roomId;
   }
@@ -240,6 +262,12 @@ exports.getRoomParameters = function (request, roomId, clientId, isInitiator) {
   }
 
   return params;
+
+ }catch{
+  console.error('ERROR:');
+  console.error(error);
+ }
+ 
 };
 
 exports.getCacheKeyForRoom = function (host, roomId) {
