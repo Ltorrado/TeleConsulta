@@ -151,7 +151,7 @@ var TextoMostrar
 exports.ObtenerMensajeMostrar= function(room_id,callback) {
 
 
-  Request.get("http://localhost:56508/api/Cita/ObtenerTextoPorCita?identificador="+room_id, (error, response, body) => {
+  Request.get("http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="+room_id, (error, response, body) => {
     if(error) {
         return console.dir(error);
     }
