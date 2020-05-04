@@ -150,8 +150,8 @@ var generateRandom = function (length) {
 var TextoMostrar
 exports.ObtenerMensajeMostrar= function(room_id,callback) {
 
-
-  Request.get("http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="+room_id, (error, response, body) => {
+//"http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=
+  Request.get("http://192.168.200.13:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="+room_id, (error, response, body) => {
     if(error) {
         return console.dir(error);
     }

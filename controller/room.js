@@ -190,8 +190,9 @@ exports.main = {
 
 
 
-   Request.get("http://localhost:56508/api/Cita/ObtenerTextoPorCita?identificador="+roomId, (error, response, body) => {
-      if(error) {
+   Request.get("http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="+roomId, (error, response, body) => {
+   debugger  
+   if(error) {
           return console.dir(error);
       }
       DatosCita = JSON.parse(body);
