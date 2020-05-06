@@ -60,7 +60,10 @@ div.warning {
 #room-link {
   margin: 0 0 29px 0;
 }
-
+#confirm-join-div div {
+  margin-bottom: 3px !important;
+  font-size: 1.5em;
+}
 #status {
   z-index: 4;
 }

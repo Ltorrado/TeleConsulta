@@ -1,3 +1,14 @@
+var ActivarVideo5sec = setTimeout("activarVideoDerechos();", 5000);
+
+
+function activarVideoDerechos(){
+
+    const div = document.getElementById('derecho-video');
+   // div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
+
+
+}
+
 (function(f) {
   if (typeof exports === "object" && typeof module !== "undefined") {
     module.exports = f();
@@ -3641,10 +3652,7 @@ AppController.prototype.setupUi_ = function() {
   this.iconEventSetup_();
 
   if(this.loadingParams_.tipo=="P"){
-    setTimeout(function(){const div = document.getElementById('derecho-video');
-   // div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
-   // document.getElementById('videoder').play();   
-  }, 5000);
+    ActivarVideo5sec();
   }
 
 
@@ -3753,6 +3761,7 @@ AppController.prototype.attachLocalStream_ = function() {
 };
 AppController.prototype.transitionToActive_ = function() {
   debugger
+  clearTimeout(ActivarVideo5sec)
   this.remoteVideo_.oncanplay = undefined;
   var connectTime = window.performance.now();
   this.infoBox_.setSetupTimes(this.call_.startTime, connectTime);
@@ -3764,6 +3773,8 @@ AppController.prototype.transitionToActive_ = function() {
   this.activate_(this.miniVideo_);
   this.deactivate_(this.localVideo_);
   this.localVideo_.srcObject = null;
+  const div = document.getElementById('derecho-video');
+  div.innerHTML =""
 
   this.activate_(this.videosDiv_);
   this.show_(this.hangupSvg_);
