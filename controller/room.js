@@ -5,7 +5,8 @@ var Config = require('../config');
 var Common = require('./common');
 var Rooms = require('../data/rooms');
 var Request = require("request");
-
+      var ural="http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
+   // var ural ="http://localhost:56508/api/Cita/ObtenerTextoPorCita?identificador="
 
 var rooms = new Rooms();
 
@@ -17,8 +18,20 @@ var addClientToRoom = function (request, roomId, clientId, isLoopback, callback)
     var error = null;
     var isInitiator = false;
     var messages = [];
+    
+    if (room.hasClient(clientId)) {
+      error = Config.constant.RESPONSE_DUPLICATE_CLIENT;
+      removeClientFromRoom(request.headers['host'], roomId, clientId, function (error, result) {
+        if (error) {
+          console.log('Room ' + roomId + ' has state ' + result.room_state);
+        }
+  
+        console.log('Room ' + roomId + ' has state ' + result.room_state);
+       
+      });
+      
+    }
     var occupancy = room.getOccupancy();
-
     if (occupancy >= 2) {
       error = Config.constant.RESPONSE_ROOM_FULL;
       callback(error, {
@@ -29,18 +42,7 @@ var addClientToRoom = function (request, roomId, clientId, isLoopback, callback)
       return;
     }  else {
 
-      if (room.hasClient(clientId)) {
-        error = Config.constant.RESPONSE_DUPLICATE_CLIENT;
-        removeClientFromRoom(request.headers['host'], roomId, clientId, function (error, result) {
-          if (error) {
-            console.log('Room ' + roomId + ' has state ' + result.room_state);
-          }
     
-          console.log('Room ' + roomId + ' has state ' + result.room_state);
-         
-        });
-        
-      }
 
 
 
@@ -190,7 +192,7 @@ exports.main = {
 
 
 
-   Request.get("http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="+roomId, (error, response, body) => {
+   Request.get(ural+roomId, (error, response, body) => {
    debugger  
    if(error) {
           return console.dir(error);
@@ -198,8 +200,9 @@ exports.main = {
       DatosCita = JSON.parse(body);
       
       var params = Common.getRoomParameters(request, DatosCita.roomId, DatosCita.clienteId, null);
-      params["textoMostrar"] =DatosCita.mensaje
-      
+      params["textoMostrar"] =DatosCita.mensaje;
+      params["url"]=roomId;
+      params["tipo"]=DatosCita.tipo;
       reply.view('index_template', params);
   });
 
@@ -210,14 +213,45 @@ exports.main = {
   }
 };
 
+
+exports.ColgarRemoto = {
+  handler: function (request, reply) {
+debugger
+    var url = request.params.url;
+   // var ural="http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
+   //var ural="http://localhost:56508/api/telellamada/RegistrarColgadoRemoto?identificador=";
+    Request.get(ural+url, (error, response, body) => {
+      debugger  
+      if(error) {
+             return console.dir(error);
+         }
+         DatosCita = JSON.parse(body);
+         
+         var params = Common.getRoomParameters(request, DatosCita.roomId, DatosCita.clienteId, null);
+         params["textoMostrar"] =DatosCita.mensaje;
+         params["url"]=roomId;
+         reply.view('index_template', params);
+     });
+
+
+
+  }
+
+}
+
 exports.join = {
   handler: function (request, reply) {
     debugger
     var roomId = request.params.roomId;
     var clientId = request.params.clientId;
+    var url = request.params.url;
     var isLoopback = request.params.debug == 'loopback';
     var response = null;
+    //var ural="http://localhost:56508/api/telellamada/RegistrarInicioLlamada?identificador=";
+    Request.get(ural+url, (error, response, body) => {
 
+
+    });
     addClientToRoom(request, roomId, clientId, isLoopback, function(error, result) {
       if (error) {
         console.error('Error adding client to room: ' + error + ', room_state=' + result.room_state);

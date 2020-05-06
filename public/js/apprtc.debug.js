@@ -3516,15 +3516,17 @@ Analytics.prototype.sendEventRequest_ = function(eventObj) {
 };
 var enums = {"EventType":{"ICE_CONNECTION_STATE_CONNECTED":3, "ROOM_SIZE_2":2}, "RequestField":{"MessageType":{"EVENT":"event"}, "CLIENT_TYPE":"client_type", "EventField":{"EVENT_TIME_MS":"event_time_ms", "ROOM_ID":"room_id", "EVENT_TYPE":"event_type", "FLOW_ID":"flow_id"}, "TYPE":"type", "EVENT":"event", "REQUEST_TIME_MS":"request_time_ms"}, "ClientType":{"UNKNOWN":0, "ANDROID":4, "DESKTOP":2, "IOS":3, "JS":1}};
 var remoteVideo = $("#remote-video");
-var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
+var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button",videoDerecho:"#derecho-video",confirmCondiciones:"#confirm-derechos-div", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
 rejoinLink:"#rejoin-link", roomLinkHref:"#room-link-href", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
 var AppController = function(loadingParams) {
   debugger
   trace("Initializing; server= " + loadingParams.roomServer + ".");
   trace("Initializing; room=" + loadingParams.roomId + ".");
+  this.confirmDerechos_ =$(UI_CONSTANTS.confirmCondiciones);
   this.hangupSvg_ = $(UI_CONSTANTS.hangupSvg);
   this.icons_ = $(UI_CONSTANTS.icons);
   this.localVideo_ = $(UI_CONSTANTS.localVideo);
+  this.videoDerecho_ =$(UI_CONSTANTS.videoDerecho);
   this.miniVideo_ = $(UI_CONSTANTS.miniVideo);
   this.sharingDiv_ = $(UI_CONSTANTS.sharingDiv);
   this.statusDiv_ = $(UI_CONSTANTS.statusDiv);
@@ -3566,8 +3568,12 @@ var AppController = function(loadingParams) {
         $(UI_CONSTANTS.confirmJoinRoomSpan).textContent = ' "' + this.loadingParams_.roomId + '"';
       }
       var confirmJoinDiv = $(UI_CONSTANTS.confirmJoinDiv);
-      
+      var confirmderechosDiv = $(UI_CONSTANTS.confirmCondiciones);
       this.show_(confirmJoinDiv);
+      if(this.loadingParams_.tipo=="P"){
+        this.show_(confirmderechosDiv);
+      }
+     
       $(UI_CONSTANTS.confirmJoinButton).onclick = function() {
         this.hide_(confirmJoinDiv);
         var recentlyUsedList = new RoomSelection.RecentlyUsedList;
@@ -3631,7 +3637,20 @@ AppController.prototype.showRoomSelection_ = function() {
   }.bind(this);
 };
 AppController.prototype.setupUi_ = function() {
+  debugger
   this.iconEventSetup_();
+
+  if(this.loadingParams_.tipo=="P"){
+    setTimeout(function(){const div = document.getElementById('derecho-video');
+   // div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
+   // document.getElementById('videoder').play();   
+  }, 5000);
+  }
+
+
+ //this.show_(this.videoDerecho_);
+ //document.getElementById('derecho-video').appendChild(div);
+
   document.onkeypress = this.onKeyPress_.bind(this);
   window.onmousemove = this.showIcons_.bind(this);
   $(UI_CONSTANTS.muteAudioSvg).onclick = this.toggleAudioMute_.bind(this);
@@ -3657,6 +3676,7 @@ AppController.prototype.finishCallSetup_ = function(roomId) {
         if (event.state.roomLink) {
          // location.href = location.origin;
          //location.href = event.state.roomLink;
+
         }
       }
     };
@@ -3670,11 +3690,16 @@ AppController.prototype.hangup_ = function() {
   this.call_.hangup(true);
   document.onkeypress = null;
   window.onmousemove = null;
+  var path =  "/colgarremoto/"+this.loadingParams_.url ;
+  sendAsyncUrlRequest("POST", path)
 };
 AppController.prototype.onRemoteHangup_ = function() {
+  debugger
   this.displayStatus_("El otro participante de la conferencia ha cerrado su sesión");
-  this.transitionToWaiting_();
+  this.transitionToWaiting_(); 
   this.call_.onRemoteHangup();
+    var path =  "/colgarremoto/"+this.loadingParams_.url ;
+    sendAsyncUrlRequest("POST", path)
 };
 AppController.prototype.onRemoteSdpSet_ = function(hasRemoteVideo) {
   if (hasRemoteVideo) {
@@ -3686,6 +3711,7 @@ AppController.prototype.onRemoteSdpSet_ = function(hasRemoteVideo) {
   }
 };
 AppController.prototype.waitForRemoteVideo_ = function() {
+  debugger
   if (this.remoteVideo_.readyState >= 2) {
     trace("Remote video started; currentTime: " + this.remoteVideo_.currentTime);
     this.transitionToActive_();
@@ -3712,6 +3738,7 @@ AppController.prototype.onLocalStreamAdded_ = function(stream) {
   }
 };
 AppController.prototype.attachLocalStream_ = function() {
+  debugger
   trace("Attaching local stream.");
   this.localVideo_.srcObject = this.localStream_;
   this.displayStatus_("");
@@ -3725,6 +3752,7 @@ AppController.prototype.attachLocalStream_ = function() {
   }
 };
 AppController.prototype.transitionToActive_ = function() {
+  debugger
   this.remoteVideo_.oncanplay = undefined;
   var connectTime = window.performance.now();
   this.infoBox_.setSetupTimes(this.call_.startTime, connectTime);
@@ -3736,11 +3764,13 @@ AppController.prototype.transitionToActive_ = function() {
   this.activate_(this.miniVideo_);
   this.deactivate_(this.localVideo_);
   this.localVideo_.srcObject = null;
+
   this.activate_(this.videosDiv_);
   this.show_(this.hangupSvg_);
   this.displayStatus_("");
 };
 AppController.prototype.transitionToWaiting_ = function() {
+  debugger
   this.remoteVideo_.oncanplay = undefined;
   this.hide_(this.hangupSvg_);
   this.deactivate_(this.videosDiv_);
@@ -3752,6 +3782,7 @@ AppController.prototype.transitionToWaiting_ = function() {
     }.bind(this), 800);
   }
   this.localVideo_.srcObject = this.miniVideo_.srcObject;
+  //this.activate_(this.localVideo_);
   this.activate_(this.localVideo_);
   this.deactivate_(this.remoteVideo_);
   this.deactivate_(this.miniVideo_);
@@ -4251,7 +4282,7 @@ Call.prototype.joinRoom_ = function() {
       reject(Error("Missing room id."));
     }
     debugger
-    var path = this.roomServer_ + "/join/" + this.params_.roomId +"/"+this.params_.clientid+ window.location.search;
+    var path = this.roomServer_ + "/join/" + this.params_.roomId +"/"+this.params_.clientid+"/"+this.params_.url+ window.location.search;
     sendAsyncUrlRequest("POST", path).then(function(response) {
       var responseObj = parseJSON(response);
       if (!responseObj) {
@@ -4267,6 +4298,9 @@ Call.prototype.joinRoom_ = function() {
         }
         return;
       }
+      debugger
+
+
       trace("Joined the room.");
       resolve(responseObj.params);
     }.bind(this)).catch(function(error) {

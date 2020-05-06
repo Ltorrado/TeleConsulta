@@ -21,12 +21,23 @@
 
 <body>
   <div style="position: absolute; z-index: 1;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png"></div>
-  <div id="videos">
+  
+ <div id="videos">
     
     <video id="mini-video" autoplay playsinline muted></video>
     <video id="remote-video" autoplay playsinline></video>
     <video id="local-video" autoplay playsinline muted></video>
+ 
   </div>
+  <div class="wrapper ">
+    <div id="derecho-video" class="h_iframe">
+       
+      
+     </div>
+  
+</div>
+
+
   <div id="room-selection" class="hidden">
     <h2>Consultorio Virtual VIVA 1A IPS</h2>
     <p id="instructions">Por favor digite el codigo de la consulta</p>
@@ -46,13 +57,21 @@
       <ul id="recent-rooms-list"></ul>
     </div>
   </div>
-  <div id="confirm-join-div" class="hidden">    
-    <!--<div style="position: absolute;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png"></div>-->
-    <div style="font-size: 1.1em !important;">      
-     {{textoMostrar}} <span id="confirm-join-room-span" style="display: none;"></span>?
-    </div>
-      <button id="confirm-join-button">INICIAR</button>
-    </div>
+
+    <div id="confirm-join-div" class="hidden Concentimiento">    
+      <!--<div style="position: absolute;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png"></div>-->
+      <div style="font-size: 1.1em !important;">      
+       {{textoMostrar}} <span id="confirm-join-room-span" style="display: none;"></span>
+      </div>
+      <div id="confirm-derechos-div" style="font-size: 1.1em !important;" class="hidden">      
+        <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto terminos y condiciones</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto politica de privacidad</label><br>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto concentimiento confirmado</label><br>
+       </div>
+        <button id="confirm-join-button">INICIAR</button>
+      </div>
+  
+
   <footer>
     <div id="sharing-div">
       <div id="room-link">Estas conectado al consultorio virtual de VIVA 1A IPS. Esperando conexión de otro participante <a id="room-link-href" style="display: none;" href="{{room_link}}" target="_blank">{{room_link}}</a></div>
@@ -111,6 +130,8 @@
     var versionInfo = [];
     {{/if}}
     var loadingParams = {
+      url:'{{url}}',
+      tipo:'{{tipo}}',
       clientid:'{{client_id}}',
       errorMessages: errorMessages,
       warningMessages: warningMessages,
