@@ -1,15 +1,31 @@
-var ActivarVideo5sec = setTimeout("activarVideoDerechos();", 5000);
+var ActivarVideo5sec =true;
 
 
 function activarVideoDerechos(){
+  debugger
 
+  if(ActivarVideo5sec){
     const div = document.getElementById('derecho-video');
-   // div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
+    div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
 
+  }
+
+   
 
 }
 
 (function(f) {
+ 
+
+
+  function activarVideoDerechos(){
+  
+      const div = document.getElementById('derecho-video');
+      div.innerHTML ='<iframe id="videoder" width="'+"2"+'" height="'+"2"+'" src="https://www.youtube.com/embed/'+"Jt6tm9GuwMg"+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen allow="autoplay" wmode="Opaque"></iframe>';
+  
+  
+  }
+
   if (typeof exports === "object" && typeof module !== "undefined") {
     module.exports = f();
   } else {
@@ -3652,7 +3668,8 @@ AppController.prototype.setupUi_ = function() {
   this.iconEventSetup_();
 
   if(this.loadingParams_.tipo=="P"){
-    ActivarVideo5sec();
+    setTimeout("activarVideoDerechos();", 5000);
+
   }
 
 
@@ -3761,7 +3778,8 @@ AppController.prototype.attachLocalStream_ = function() {
 };
 AppController.prototype.transitionToActive_ = function() {
   debugger
-  clearTimeout(ActivarVideo5sec)
+
+  ActivarVideo5sec=false;
   this.remoteVideo_.oncanplay = undefined;
   var connectTime = window.performance.now();
   this.infoBox_.setSetupTimes(this.call_.startTime, connectTime);
