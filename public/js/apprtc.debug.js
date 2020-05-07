@@ -1,3 +1,8 @@
+
+
+
+
+
 var ActivarVideo5sec =true;
 
 
@@ -3793,7 +3798,7 @@ AppController.prototype.transitionToActive_ = function() {
   this.localVideo_.srcObject = null;
   const div = document.getElementById('derecho-video');
   div.innerHTML =""
-
+  empezarTiempo();
   this.activate_(this.videosDiv_);
   this.show_(this.hangupSvg_);
   this.displayStatus_("");
