@@ -173,6 +173,14 @@ var removeClientFromRoom = function (host, roomId, clientId, callback) {
   });
 };
 
+exports.EnviarMensaje={
+  handler: function (request, reply) {
+
+
+
+  }
+}
+
 exports.main = {
   handler: function (request, reply) {
     var roomId = request.params.roomId;
@@ -205,6 +213,7 @@ exports.main = {
       params["tipo"]=DatosCita.tipo;
       params["remisor"]=DatosCita.remisor;
       params["time"]="hola";
+      params["nombreRemisor"]=DatosCita.nombreRemisor;
       reply.view('index_template', params);
   });
 

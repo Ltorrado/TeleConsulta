@@ -14,6 +14,7 @@
   <meta itemprop="name" content="AppRTC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta id="theme-color" name="theme-color" content="#ffffff">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
   <base target="_blank">
   <title>VIVA 1A IPS - Teleconsulta</title>
   <link rel="manifest" href="/manifest.json">
@@ -75,14 +76,21 @@
          {{textoMostrar}} <span id="confirm-join-room-span" style="display: none;"></span>
         </div>
         <div id="confirm-derechos-div" style="font-size: 0.7em !important;text-align: left;margin-bottom: 0!important;" class="hidden">   
-          <div class="col-md-4">  <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto terminos y condiciones</label><br>
-            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto politica de privacidad</label><br>
-            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto concentimiento confirmado</label><br>
-           </div>   
+         <div class="col-md-12 row" >
+          <div class="col-md-5" style="width: 100%;"></div>
+          <div class="col-md-4" style="line-height: 0;font-size: 0.7em">
+            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto <span    data-toggle="modal" data-target="#exampleModal" style="text-decoration: underline;" >terminos y condiciones</span></label><br>
+            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto  <span   data-toggle="modal" data-target="#politicaprivacidad" style="text-decoration: underline;" >politica de privacidad</span></label><br>
+            <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto  <span   data-toggle="modal" data-target="#concentimiento" style="text-decoration: underline;" >concentimiento informado</span></label><br>
+           </div> 
          </div>
-         <div class="col-md-12 row">
+        
+         
+
+         </div>
+      
           <button  id="confirm-join-button">INICIAR</button>
-         </div>
+      
          
         </div>
     
@@ -127,6 +135,65 @@
     </div>
     <div>
   
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Terminos y condiciones</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+              <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="politicaprivacidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Plitica de privacidad</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+              <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="concentimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Concentimiento informado</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+              <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
   </div>
     <div id="privacy"></div>
     {{include_loopback_js}}
@@ -152,6 +219,7 @@
       var versionInfo = [];
       {{/if}}
       var loadingParams = {
+        nombreRemisor:'{{nombreRemisor}}',
         url:'{{url}}',
         tipo:'{{tipo}}',
         remisorChat:'{{remisor}}',
@@ -206,7 +274,7 @@
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
         
         <div class="chat-about">
-          <div class="chat-with"> Leydi Martinez</div>
+          <div class="chat-with"> {{nombreRemisor}}</div>
         </div>
         <i class="fa fa-star"></i>
       </div> <!-- end chat-header -->
@@ -225,7 +293,7 @@
         <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
         <i class="fa fa-file-image-o"></i>
         
-        <button>Evniar</button>
+        <button>Enviar</button>
   
       </div> <!-- end chat-message -->
       
