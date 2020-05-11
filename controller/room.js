@@ -203,6 +203,8 @@ exports.main = {
       params["textoMostrar"] =DatosCita.mensaje;
       params["url"]=roomId;
       params["tipo"]=DatosCita.tipo;
+      params["remisor"]=DatosCita.remisor;
+      params["time"]="hola";
       reply.view('index_template', params);
   });
 

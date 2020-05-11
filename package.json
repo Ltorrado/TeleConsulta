@@ -13,10 +13,21 @@
   "author": "Fitra Aditya",
   "license": "MIT",
   "dependencies": {
+    "@microsoft/signalr": "^3.1.3",
     "handlebars": "^4.0.5",
     "hapi": "^12.1.0",
     "inert": "^3.2.0",
+    "jquery": "^3.5.1",
     "request": "^2.88.2",
     "vision": "^4.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ltorrado/TeleConsulta.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ltorrado/TeleConsulta/issues"
+  },
+  "homepage": "https://github.com/Ltorrado/TeleConsulta#readme"
 }
