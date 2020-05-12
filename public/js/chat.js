@@ -5,7 +5,7 @@
   var intials = this.loadingParams.nombreRemisor.charAt(0);
  $('#profileImage').text(intials);
   
-    var ural="http://181.49.176.36:8050/teleconsulta/";
+    var ural="https://appcita.viva1a.com.co:8051/teleconsulta/";
   //var ural ="http://localhost:56508/"
 
   var   connection = new signalR.HubConnectionBuilder().withUrl(ural+"chatHub")
@@ -15,7 +15,7 @@
      mensajeTemplate: ' <li class="clearfix">'+
 '<div class="message-data align-right">'+
  ' <span class="message-data-time" >{{time}}, Hoy</span> &nbsp; &nbsp;'+
-  '<span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>'+
+  '<span class="message-data-name" ></span> <i class="fa fa-circle me"></i>'+
 '</div>'+
 '<div class="message other-message float-right">'+
   '{{messageOutput}}'+
@@ -24,7 +24,7 @@
 
  respuestaTemplate : '  <li>'+
 '<div class="message-data">'+
-  '<span class="message-data-name"><i class="fa fa-circle online"></i> '+ loadingParams.nombreRemisor+'</span>'+
+  '<span class="message-data-name"><i class="fa fa-circle online"></i> </span>'+
   '<span class="message-data-time">{{time}}, Hoy</span>'+
 '</div>'+
 '<div class="message my-message">'+
