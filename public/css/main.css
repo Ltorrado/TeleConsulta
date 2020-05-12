@@ -423,8 +423,22 @@ svg:hover {
   fill: #407cf7;
 }
 
-#hangup {
+
+#chatSvg {
   transition: 360ms;
+}
+
+#chatSvg:hover,
+#chatSvg.on {
+  background: #407cf7;
+}
+
+#chatSvg:hover circle {
+  fill: #407cf7;
+}
+
+#hangup {
+  transition: 440ms;
 }
 
 #hangup:hover {
@@ -433,6 +447,8 @@ svg:hover {
 #hangup:hover circle {
   fill: #dd2c00;
 }
+
+
 
 /*////// icons CSS end /////////////////////////*/
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);

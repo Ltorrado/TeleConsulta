@@ -3,8 +3,8 @@
 (function(){
 
 
-      var ural="http://181.49.176.36:8050/teleconsulta/";
-  // var ural ="http://localhost:56508/"
+    var ural="http://181.49.176.36:8050/teleconsulta/";
+  //var ural ="http://localhost:56508/"
 
   var   connection = new signalR.HubConnectionBuilder().withUrl(ural+"chatHub")
   .configureLogging(signalR.LogLevel.Information)

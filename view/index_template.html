@@ -29,7 +29,7 @@
 
 <body>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9" id="vidi">
     <div style="position: absolute; z-index: 1;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png">
       <div id="time" style="margin-left: 20%;"></div>
     </div>
@@ -126,12 +126,24 @@
         <path class="on" transform="scale(0.8), translate(7,6)" d="M10 32h6v6h4V28H10v4zm6-16h-6v4h10V10h-4v6zm12 22h4v-6h6v-4H28v10zm4-22v-6h-4v10h10v-4h-6z" fill="white"/>
         <path class="off" transform="scale(0.8), translate(7,6)"  d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z" fill="white"/>
       </svg>
+    
+      <svg id="chatSvg"  xmlns="http://www.w3.org/2000/svg"  width="48" height="48" viewbox="-10 -10 68 68">
+      <circle cx="24" cy="24" r="34">
+        <title>Ocultar Chat</title>
+      </circle>
+   <path class="on"  fill="white" transform="scale(0.2), translate(30,30)"  d="M26.875,21.5c-8.86035,0 -16.125,7.26465 -16.125,16.125v86c0,8.86035 7.26465,16.125 16.125,16.125h16.125v26.16114l39.2627,-26.16114h49.88672l10.49804,10.54004l7.64258,-7.64258l-120.72754,-120.68554v-0.46192zM43.88183,21.5l10.75,10.75h79.74317c2.98145,0 5.375,2.43555 5.375,5.375v79.74317l10.07813,10.07813c0.29395,-1.25977 0.67188,-2.47754 0.67188,-3.82129v-86c0,-8.90234 -7.22266,-16.125 -16.125,-16.125zM25.02734,32.62793l31.87207,31.87207h-3.14942v10.75h13.89942l10.75,10.75h-24.64942v10.75h35.39942l32.25,32.25h-42.41211l-25.2373,16.83886v-16.83886h-26.875c-3.02344,0 -5.375,-2.35156 -5.375,-5.375v-86c0,-2.35156 1.46973,-4.24121 3.52734,-4.99707zM32.25,64.5v10.75h10.75v-10.75zM86.88183,64.5l10.75,10.75h31.36817v-10.75zM32.25,86v10.75h10.75v-10.75zM108.38183,86l10.75,10.75h9.86817v-10.75z"></path>
+
+          <path class="off" transform="scale(0.2), translate(30,30)"  d="M28.66667,21.5c-7.88333,0 -14.26335,6.45 -14.26335,14.33333l-0.05599,85.986c0,7.91917 6.41417,14.34733 14.33333,14.34733h14.31934v28.66667l28.66667,-28.66667h71.66667c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-86c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333zM93.16667,50.16667l28.66667,28.66667l-28.66667,28.66667v-21.5h-43v-14.33333h43z" fill="white"></path>
+        
+        </svg>
+
       <svg id="hangup" class="hidden" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
         <circle cx="24" cy="24" r="34">
           <title>Colgar</title>
         </circle>
         <path transform="scale(0.7), translate(11,10)" d="M24 18c-3.21 0-6.3.5-9.2 1.44v6.21c0 .79-.46 1.47-1.12 1.8-1.95.98-3.74 2.23-5.33 3.7-.36.35-.85.57-1.4.57-.55 0-1.05-.22-1.41-.59L.59 26.18c-.37-.37-.59-.87-.59-1.42 0-.55.22-1.05.59-1.42C6.68 17.55 14.93 14 24 14s17.32 3.55 23.41 9.34c.37.36.59.87.59 1.42 0 .55-.22 1.05-.59 1.41l-4.95 4.95c-.36.36-.86.59-1.41.59-.54 0-1.04-.22-1.4-.57-1.59-1.47-3.38-2.72-5.33-3.7-.66-.33-1.12-1.01-1.12-1.8v-6.21C30.3 18.5 27.21 18 24 18z" fill="white"/>
       </svg>
+     
     </div>
     <div>
   
@@ -195,76 +207,13 @@
 
 
   </div>
-    <div id="privacy"></div>
-    {{include_loopback_js}}
   
-    <script src="/js/apprtc.debug.js"></script>
-    <script src="/js/cronometro.js"></script>
-    <script>
-  
-     debugger
-      {{#if error_messages}}
-      var errorMessages = {{error_messages}};
-      {{else}}
-      var errorMessages = [];
-      {{/if}}
-      {{#if warning_messages}}
-      var warningMessages = {{warning_messages}};
-      {{else}}
-      var warningMessages = [];
-      {{/if}}
-      {{#if version_info}}
-      var versionInfo = {{version_info}};
-      {{else}}
-      var versionInfo = [];
-      {{/if}}
-      var loadingParams = {
-        nombreRemisor:'{{nombreRemisor}}',
-        url:'{{url}}',
-        tipo:'{{tipo}}',
-        remisorChat:'{{remisor}}',
-        clientid:'{{client_id}}',
-        errorMessages: errorMessages,
-        warningMessages: warningMessages,
-        isLoopback: {{is_loopback}},
-        {{#if room_id}}
-        roomId: '{{room_id}}',
-        roomLink: '{{room_link}}',
-        {{/if}}
-        mediaConstraints: {{{media_constraints}}},
-        offerOptions: {{{offer_options}}},
-        peerConnectionConfig: {{{pc_config}}},
-        peerConnectionConstraints: {{{pc_constraints}}},
-        iceServerRequestUrl: '{{turn_url}}',
-        iceServerTransports: '{{turn_transports}}',
-        wssUrl: '{{wss_url}}',
-        wssPostUrl: '{{wss_post_url}}',
-        bypassJoinConfirmation: {{bypass_join_confirmation}},
-        versionInfo: versionInfo
-      };
-      var appController;
-      function initialize() {
-        if (document.visibilityState === 'prerender') {
-          document.addEventListener('visibilitychange', onVisibilityChange);
-          return;
-        }
-        appController = new AppController(loadingParams);
-      }
-      function onVisibilityChange() {
-        if (document.visibilityState === 'prerender') {
-          return;
-        }
-        document.removeEventListener('visibilitychange', onVisibilityChange);
-        initialize();
-      }
-      initialize();
-    </script>
 
   </div>
   
 
 
-<div  class="col-md-3" id="chatviva">
+<div  class="col-md-3" id="chatdiv">
 
   <!-- partial:index.partial.html -->
   <div class="container ">
@@ -302,6 +251,70 @@
   </div> <!-- end container -->
 
   <!-- partial -->
+  <div id="privacy"></div>
+  {{include_loopback_js}}
+
+  <script src="/js/apprtc.debug.js"></script>
+  <script src="/js/cronometro.js"></script>
+  <script>
+
+   debugger
+    {{#if error_messages}}
+    var errorMessages = {{error_messages}};
+    {{else}}
+    var errorMessages = [];
+    {{/if}}
+    {{#if warning_messages}}
+    var warningMessages = {{warning_messages}};
+    {{else}}
+    var warningMessages = [];
+    {{/if}}
+    {{#if version_info}}
+    var versionInfo = {{version_info}};
+    {{else}}
+    var versionInfo = [];
+    {{/if}}
+    var loadingParams = {
+      nombreRemisor:'{{nombreRemisor}}',
+      url:'{{url}}',
+      tipo:'{{tipo}}',
+      remisorChat:'{{remisor}}',
+      clientid:'{{client_id}}',
+      errorMessages: errorMessages,
+      warningMessages: warningMessages,
+      isLoopback: {{is_loopback}},
+      {{#if room_id}}
+      roomId: '{{room_id}}',
+      roomLink: '{{room_link}}',
+      {{/if}}
+      mediaConstraints: {{{media_constraints}}},
+      offerOptions: {{{offer_options}}},
+      peerConnectionConfig: {{{pc_config}}},
+      peerConnectionConstraints: {{{pc_constraints}}},
+      iceServerRequestUrl: '{{turn_url}}',
+      iceServerTransports: '{{turn_transports}}',
+      wssUrl: '{{wss_url}}',
+      wssPostUrl: '{{wss_post_url}}',
+      bypassJoinConfirmation: {{bypass_join_confirmation}},
+      versionInfo: versionInfo
+    };
+    var appController;
+    function initialize() {
+      if (document.visibilityState === 'prerender') {
+        document.addEventListener('visibilitychange', onVisibilityChange);
+        return;
+      }
+      appController = new AppController(loadingParams);
+    }
+    function onVisibilityChange() {
+      if (document.visibilityState === 'prerender') {
+        return;
+      }
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      initialize();
+    }
+    initialize();
+  </script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>

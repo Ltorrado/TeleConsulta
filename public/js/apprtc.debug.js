@@ -3548,7 +3548,7 @@ Analytics.prototype.sendEventRequest_ = function(eventObj) {
 };
 var enums = {"EventType":{"ICE_CONNECTION_STATE_CONNECTED":3, "ROOM_SIZE_2":2}, "RequestField":{"MessageType":{"EVENT":"event"}, "CLIENT_TYPE":"client_type", "EventField":{"EVENT_TIME_MS":"event_time_ms", "ROOM_ID":"room_id", "EVENT_TYPE":"event_type", "FLOW_ID":"flow_id"}, "TYPE":"type", "EVENT":"event", "REQUEST_TIME_MS":"request_time_ms"}, "ClientType":{"UNKNOWN":0, "ANDROID":4, "DESKTOP":2, "IOS":3, "JS":1}};
 var remoteVideo = $("#remote-video");
-var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button",videoDerecho:"#derecho-video",confirmCondiciones:"#confirm-derechos-div", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
+var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button",videoDerecho:"#derecho-video",confirmCondiciones:"#confirm-derechos-div", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", chatViva:"#chatdiv",chatSvg:"#chatSvg",localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
 rejoinLink:"#rejoin-link", roomLinkHref:"#room-link-href", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
 var AppController = function(loadingParams) {
   debugger
@@ -3575,6 +3575,8 @@ var AppController = function(loadingParams) {
   this.muteAudioIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteAudioSvg);
   this.muteVideoIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteVideoSvg);
   this.fullscreenIconSet_ = new AppController.IconSet_(UI_CONSTANTS.fullscreenSvg);
+  this.ChatIconSet_ = new AppController.IconSet_(UI_CONSTANTS.chatSvg);
+  this.chatVivaDiv_ = $(UI_CONSTANTS.chatViva);
   debugger
   this.loadingParams_ = loadingParams;
   this.loadUrlParams_();
@@ -3683,10 +3685,12 @@ AppController.prototype.setupUi_ = function() {
 
   document.onkeypress = this.onKeyPress_.bind(this);
   window.onmousemove = this.showIcons_.bind(this);
-  $(UI_CONSTANTS.muteAudioSvg).onclick = this.toggleAudioMute_.bind(this);
-  $(UI_CONSTANTS.muteVideoSvg).onclick = this.toggleVideoMute_.bind(this);
-  $(UI_CONSTANTS.fullscreenSvg).onclick = this.toggleFullScreen_.bind(this);
-  $(UI_CONSTANTS.hangupSvg).onclick = this.hangup_.bind(this);
+  $("#mute-audio").click(this.toggleAudioMute_.bind(this))
+  $(UI_CONSTANTS.muteVideoSvg).click( this.toggleVideoMute_.bind(this));
+  $(UI_CONSTANTS.fullscreenSvg).click( this.toggleFullScreen_.bind(this));
+  $(UI_CONSTANTS.hangupSvg).click(this.hangup_.bind(this)); 
+  $(UI_CONSTANTS.chatSvg).click(this.toggleChat_.bind(this));
+
   setUpFullScreen();
 };
 AppController.prototype.finishCallSetup_ = function(roomId) {
@@ -3843,6 +3847,7 @@ AppController.prototype.onNewRoomClick_ = function() {
   this.showRoomSelection_();
 };
 AppController.prototype.onKeyPress_ = function(event) {
+  debugger
   switch(String.fromCharCode(event.charCode)) {
     case " ":
     case "m":
@@ -3898,9 +3903,26 @@ AppController.prototype.displayError_ = function(error) {
   this.infoBox_.pushErrorMessage(error);
 };
 AppController.prototype.toggleAudioMute_ = function() {
+  debugger
   this.call_.toggleAudioMute();
   this.muteAudioIconSet_.toggle();
 };
+AppController.prototype.toggleChat_ = function() {
+  debugger
+  if($("#chatdiv").css('display') != 'none'){
+    this.hide_(this.chatVivaDiv_);
+  
+    $("#vidi").removeClass("col-md-9")
+  }else{
+    this.show_(this.chatVivaDiv_);
+    $("#vidi").addClass("col-md-9")
+  }
+  
+  this.ChatIconSet_.toggle();
+};
+
+
+
 AppController.prototype.toggleVideoMute_ = function() {
   this.call_.toggleVideoMute();
   this.muteVideoIconSet_.toggle();
@@ -3929,6 +3951,12 @@ AppController.prototype.hide_ = function(element) {
 };
 AppController.prototype.show_ = function(element) {
   element.classList.remove("hidden");
+};
+AppController.prototype.expandVideo_ = function(element) {
+  element.classList.remove("col-md-9");
+};
+AppController.prototype.shrinkVideo_ = function(element) {
+  element.classList.add("col-md-9");
 };
 AppController.prototype.activate_ = function(element) {
   element.classList.add("active");
