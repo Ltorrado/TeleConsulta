@@ -433,6 +433,19 @@ svg:hover {
   background: #407cf7;
 }
 
+#profileImage {
+  float: left;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 120%;
+  margin: 0;
+}
+
 #chatSvg:hover circle {
   fill: #407cf7;
 }

@@ -2,7 +2,9 @@
 
 (function(){
 
-
+  var intials = this.loadingParams.nombreRemisor.charAt(0);
+ $('#profileImage').text(intials);
+  
     var ural="http://181.49.176.36:8050/teleconsulta/";
   //var ural ="http://localhost:56508/"
 
@@ -83,11 +85,13 @@
       this.$chatHistory = $('.chat-history');
       this.$button = $('button');
       this.$textarea = $('#message-to-send');
+      this.$imagenSelect =$("#selectedFile");
       this.$chatHistoryList =  this.$chatHistory.find('ul');
     },
     bindEvents: function() {
       this.$button.on('click', this.addMessage.bind(this));
       this.$textarea.on('keyup', this.addMessageEnter.bind(this));
+      this.$imagenSelect.on('change',this.addimagen.bind(this))
     },
     render: function() {
       this.scrollToBottom();
@@ -113,6 +117,21 @@
       this.messageToSend = this.$textarea.val()
       this.render();         
     },
+    addimagen: function(input) {
+      debugger;
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#blah')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  },
     addMessageEnter: function(event) {
         // enter was pressed
         if (event.keyCode === 13) {

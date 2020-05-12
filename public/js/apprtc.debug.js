@@ -3609,6 +3609,14 @@ var AppController = function(loadingParams) {
       }
      
       $(UI_CONSTANTS.confirmJoinButton).onclick = function() {
+        debugger
+       
+        if((!($("#cbox1").is(":checked") ) || !($("#cbox2").is(":checked") )|| !($("#cbox3").is(":checked") )) 
+            && this.loadingParams_.tipo=="P"
+            ){
+          alert('Debe aceptar la política de tratamiento de datos, y el consentimiento informado para continuar.')
+          return
+        }
         this.hide_(confirmJoinDiv);
         var recentlyUsedList = new RoomSelection.RecentlyUsedList;
         recentlyUsedList.pushRecentRoom(this.loadingParams_.roomId);
