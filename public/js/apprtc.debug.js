@@ -3860,36 +3860,7 @@ AppController.prototype.onNewRoomClick_ = function() {
   this.showRoomSelection_();
 };
 AppController.prototype.onKeyPress_ = function(event) {
-  debugger
-  switch(String.fromCharCode(event.charCode)) {
-    case " ":
-    case "m":
-      if (this.call_) {
-        this.call_.toggleAudioMute();
-        this.muteAudioIconSet_.toggle();
-      }
-      return false;
-    case "c":
-      if (this.call_) {
-        this.call_.toggleVideoMute();
-        this.muteVideoIconSet_.toggle();
-      }
-      return false;
-    case "f":
-      this.toggleFullScreen_();
-      return false;
-    case "i":
-      this.infoBox_.toggleInfoDiv();
-      return false;
-    case "q":
-      this.hangup_();
-      return false;
-    case "l":
-      this.toggleMiniVideo_();
-      return false;
-    default:
-      return;
-  }
+ 
 };
 AppController.prototype.pushCallNavigation_ = function(roomId, roomLink) {
   if (!isChromeApp()) {
