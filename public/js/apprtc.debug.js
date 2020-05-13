@@ -3732,6 +3732,11 @@ AppController.prototype.hangup_ = function() {
   this.call_.hangup(true);
   document.onkeypress = null;
   window.onmousemove = null;
+  if(this.loadingParams_.tipo=="P"){
+    $("#CalificacionLlamada").modal('toggle');
+    seguirContandoTiempo=false;
+  }
+  
   var path =  "/colgarremoto/"+this.loadingParams_.url ;
   sendAsyncUrlRequest("POST", path)
 };

@@ -2,6 +2,7 @@
 
 (function(){
 
+
   var intials = this.loadingParams.nombreRemisor.charAt(0);
  $('#profileImage').text(intials);
   
