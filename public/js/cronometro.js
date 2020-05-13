@@ -1,7 +1,7 @@
 
 var startTime;
 var seguirContandoTiempo=true;
-
+$('[data-toggle="tooltip"]').tooltip();  
 function display() {
     // later record end time
     var endTime = new Date();

@@ -219,33 +219,54 @@
               <form>
                 <div class="form-group">
                   <label >¿Como calificaría si experiencia global respecto a los servicios de salud que ha recibido a través de su IPS?</label>
-                 <div class="rating">
-    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-</div>
+                  <div class="stars">
+                    <form action="">
+                      <input class="star star-5" id="star-5" type="radio" name="star"/>
+                      <label  data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-5"></label>
+                      <input class="star star-4" id="star-4" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Excelente!"  class="star star-4" for="star-4"></label>
+                      <input class="star star-3" id="star-3" type="radio" name="star"/>
+                      <label    data-toggle="tooltip" data-placement="top" title="Bueno!"  class="star star-3" for="star-3"></label>
+                      <input class="star star-2" id="star-2" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-2"></label>
+                      <input class="star star-1" id="star-1" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Malo!"  class="star star-1" for="star-1"></label>
+                    </form>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label >¿Como califica el trato del personal médico o asistencial que le atendió en la consulta?</label>
-                 <div class="rating">
-    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-</div>
+                  <div class="stars">
+                    <form action="">
+                      <input class="star star-5" id="star-6" type="radio" name="star"/>
+                      <label  data-toggle="tooltip" data-placement="top" title="Excepcional!"  class="star star-5" for="star-6"></label>
+                      <input class="star star-4" id="star-7" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-7"></label>
+                      <input class="star star-3" id="star-8" type="radio" name="star"/>
+                      <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-8"></label>
+                      <input class="star star-2" id="star-9" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-9"></label>
+                      <input class="star star-1" id="star-10" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-10"></label>
+                    </form>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label >¿Recomendaría a sus familiares y amigos esta IPS?</label>
-                 <div class="rating">
-    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-</div>
+                  <div class="stars">
+                    <form action="">
+                      <input  class="star star-5" id="star-11" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-11"></label>
+                      <input class="star star-4" id="star-12" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-12"></label>
+                      <input class="star star-3" id="star-13" type="radio" name="star"/>
+                      <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-13"></label>
+                      <input class="star star-2" id="star-14" type="radio" name="star"/>
+                      <label  data-toggle="tooltip" data-placement="top" title="Regular!"class="star star-2" for="star-14"></label>
+                      <input class="star star-1" id="star-15" type="radio" name="star"/>
+                      <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-15"></label>
+                    </form>
+                  </div>
                 </div>
 
 
@@ -294,11 +315,11 @@
       <div class="chat-message clearfix">
         <textarea name="message-to-send" id="message-to-send" placeholder ="Escriba su mensaje" rows="3"></textarea>
                 
+       
+           <input type="file" id="selectedFile" style="display: none;" />
 
-        <input type="file" id="selectedFile" style="display: none;" />
-      
         <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o" onclick="document.getElementById('selectedFile').click();"></i>
+        <i class="fa fa-file-image-o" onclick="document.getElementById('selectedFile').click();"></i> 
         
         <button>Enviar</button>
   
