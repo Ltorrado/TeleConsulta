@@ -14,12 +14,18 @@ function display() {
 
     // get seconds
     var seconds = Math.round(timeDiff % 60);
-
+    if(seconds.toString().length==1){
+      seconds="0"+seconds;
+   }
     // remove seconds from the date
     timeDiff = Math.floor(timeDiff / 60);
 
     // get minutes
     var minutes = Math.round(timeDiff % 60);
+debugger
+if(minutes.toString().length==1){
+   minutes="0"+minutes;
+}
 
     // remove minutes from the date
     timeDiff = Math.floor(timeDiff / 60);
