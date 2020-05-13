@@ -3746,6 +3746,10 @@ AppController.prototype.onRemoteHangup_ = function() {
   this.displayStatus_("El otro participante de la conferencia ha cerrado su sesión");
   this.transitionToWaiting_(); 
   this.call_.onRemoteHangup();
+  if(this.loadingParams_.tipo=="P"){
+    $("#CalificacionLlamada").modal('toggle');
+    seguirContandoTiempo=false;
+  }
     var path =  "/colgarremoto/"+this.loadingParams_.url ;
     sendAsyncUrlRequest("POST", path)
 };
