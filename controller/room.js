@@ -5,8 +5,8 @@ var Config = require('../config');
 var Common = require('./common');
 var Rooms = require('../data/rooms');
 var Request = require("request");
-    // var ural="https://appcita.viva1a.com.co:8051/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
-   var ural ="http://localhost:56508/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="
+     var ural="https://appcita.viva1a.com.co:8051/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
+   //var ural ="http://localhost:56508/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="
 
 var rooms = new Rooms();
 

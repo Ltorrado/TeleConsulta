@@ -43,8 +43,8 @@ $('body').on('load','img',function(){
   var intials = this.loadingParams.nombreRemisor.charAt(0);
  $('#profileImage').text(intials);
   
-   // var ural="https://appcita.viva1a.com.co:8051/teleconsulta/";
-  var ural ="http://localhost:56508/teleconsulta/"
+    var ural="https://appcita.viva1a.com.co:8051/teleconsulta/";
+  //var ural ="http://localhost:56508/teleconsulta/"
 
   var   connection = new signalR.HubConnectionBuilder().withUrl(ural+"chatHub")
   .configureLogging(signalR.LogLevel.Information)
