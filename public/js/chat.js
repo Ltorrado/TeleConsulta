@@ -25,7 +25,6 @@
 
 (function(){
    
-  $("#CalificacionLlamada").modal('toggle');
    scrollAbajo= function(ok){
      debugger
 
