@@ -3612,10 +3612,10 @@ var AppController = function(loadingParams) {
       $(UI_CONSTANTS.confirmJoinButton).onclick = function() {
         debugger
        
-        if((!($("#cbox1").is(":checked") ) || !($("#cbox2").is(":checked") )|| !($("#cbox3").is(":checked") )) 
+        if((!($("#cbox3").is(":checked") )) 
             && this.loadingParams_.tipo=="P"
             ){
-          alert('Debe aceptar la política de tratamiento de datos, y el consentimiento informado para continuar.')
+          alert('Debe aceptar consentimiento informado para continuar.')
           return
         }
         this.hide_(confirmJoinDiv);
@@ -3693,7 +3693,8 @@ AppController.prototype.setupUi_ = function() {
  //document.getElementById('derecho-video').appendChild(div);
 
   document.onkeypress = this.onKeyPress_.bind(this);
-  window.onmousemove = this.showIcons_.bind(this);
+ // window.onmousemove = this.showIcons_.bind(this);
+ this.showIcons_();
   $("#mute-audio").click(this.toggleAudioMute_.bind(this))
   $(UI_CONSTANTS.muteVideoSvg).click( this.toggleVideoMute_.bind(this));
   $(UI_CONSTANTS.fullscreenSvg).click( this.toggleFullScreen_.bind(this));
@@ -3878,6 +3879,13 @@ AppController.prototype.displaySharingInfo_ = function(roomId, roomLink) {
   this.roomLink_ = roomLink;
  // this.pushCallNavigation_(roomId, roomLink);
   this.activate_(this.sharingDiv_);
+  debugger
+  if(this.loadingParams_.tipo=="P"){
+    $("#room-link").html('Estas conectado al consultorio virtual de VIVA 1A IPS. Esperando conexión de su profesional')
+  }else{
+    $("#room-link").html('Estas conectado al consultorio virtual de VIVA 1A IPS. Esperando conexión de su Paciente')
+  
+  }
 };
 AppController.prototype.displayStatus_ = function(status) {
   if (status === "") {
@@ -3956,7 +3964,7 @@ AppController.prototype.deactivate_ = function(element) {
 AppController.prototype.showIcons_ = function() {
   if (!this.icons_.classList.contains("active")) {
     this.activate_(this.icons_);
-    this.setIconTimeout_();
+   // this.setIconTimeout_();
   }
 };
 AppController.prototype.hideIcons_ = function() {
@@ -3977,7 +3985,7 @@ AppController.prototype.iconEventSetup_ = function() {
     window.clearTimeout(this.hideIconsAfterTimeout);
   }.bind(this);
   this.icons_.onmouseleave = function() {
-    this.setIconTimeout_();
+    //this.setIconTimeout_();
   }.bind(this);
 };
 AppController.prototype.loadUrlParams_ = function() {

@@ -5,8 +5,8 @@ var Config = require('../config');
 var Common = require('./common');
 var Rooms = require('../data/rooms');
 var Request = require("request");
-     var ural="https://appcita.viva1a.com.co:8051/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
-   //var ural ="http://localhost:56508/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador="
+     var ural="https://appcita.viva1a.com.co:8051/teleconsulta/api/";
+   //var ural ="http://localhost:56508/teleconsulta/api/"
 
 var rooms = new Rooms();
 
@@ -200,7 +200,7 @@ exports.main = {
 
 
 
-   Request.get(ural+roomId, (error, response, body) => {
+   Request.get(ural+"Cita/ObtenerTextoPorCita?identificador="+roomId, (error, response, body) => {
    debugger  
    if(error) {
           return console.dir(error);
@@ -231,17 +231,8 @@ debugger
     var url = request.params.url;
    // var ural="http://181.49.176.36:8050/teleconsulta/api/Cita/ObtenerTextoPorCita?identificador=";
    //var ural="http://localhost:56508/api/telellamada/RegistrarColgadoRemoto?identificador=";
-    Request.get(ural+url, (error, response, body) => {
-      debugger  
-      if(error) {
-             return console.dir(error);
-         }
-         DatosCita = JSON.parse(body);
-         
-         var params = Common.getRoomParameters(request, DatosCita.roomId, DatosCita.clienteId, null);
-         params["textoMostrar"] =DatosCita.mensaje;
-         params["url"]=roomId;
-         reply.view('index_template', params);
+    Request.get(ural+"telellamada/RegistrarColgadoRemoto?identificador="+url, (error, response, body) => {
+    
      });
 
 
@@ -259,7 +250,7 @@ exports.join = {
     var isLoopback = request.params.debug == 'loopback';
     var response = null;
     //var ural="http://localhost:56508/api/telellamada/RegistrarInicioLlamada?identificador=";
-    Request.get(ural+url, (error, response, body) => {
+    Request.get(ural+"telellamada/RegistrarInicioLlamada?identificador="+url, (error, response, body) => {
 
 
     });

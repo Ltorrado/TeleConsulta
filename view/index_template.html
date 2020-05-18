@@ -229,56 +229,65 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="EncuestaForm"  method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label >¿Como calificaría si experiencia global respecto a los servicios de salud que ha recibido a través de su IPS?</label>
                   <div class="stars">
-                    <form action="">
-                      <input class="star star-5" id="star-5" type="radio" name="star"/>
+                  
+                      <input class="hidden" value="{{client_id}}" name="encuesta[0].UsuarioId">
+                      <input class="hidden" value="1" name="encuesta[0].PreguntaId">
+                      <input class="hidden" value="{{room_id}}" name="encuesta[0].CitaId">
+                      <input class="star star-5" id="star-5" type="radio" value="5" name="encuesta[0].Respuesta"/>
                       <label  data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-5"></label>
-                      <input class="star star-4" id="star-4" type="radio" name="star"/>
+                      <input class="star star-4" id="star-4" type="radio" value="4" name="encuesta[0].Respuesta" />
                       <label data-toggle="tooltip" data-placement="top" title="Excelente!"  class="star star-4" for="star-4"></label>
-                      <input class="star star-3" id="star-3" type="radio" name="star"/>
+                      <input class="star star-3" id="star-3" type="radio" value="3" name="encuesta[0].Respuesta" />
                       <label    data-toggle="tooltip" data-placement="top" title="Bueno!"  class="star star-3" for="star-3"></label>
-                      <input class="star star-2" id="star-2" type="radio" name="star"/>
+                      <input class="star star-2" id="star-2" type="radio" value="2" name="encuesta[0].Respuesta" />
                       <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-2"></label>
-                      <input class="star star-1" id="star-1" type="radio" name="star"/>
+                      <input class="star star-1" id="star-1" type="radio" value="1" name="encuesta[0].Respuesta" />
                       <label data-toggle="tooltip" data-placement="top" title="Malo!"  class="star star-1" for="star-1"></label>
-                    </form>
+                 
                   </div>
                 </div>
                 <div class="form-group">
                   <label >¿Como califica el trato del personal médico o asistencial que le atendió en la consulta?</label>
                   <div class="stars">
-                    <form action="">
-                      <input class="star star-5" id="star-6" type="radio" name="star"/>
+                  
+                      <input class="hidden" value="{{client_id}}" name="encuesta[1].UsuarioId">
+                      <input class="hidden" value="2" name="encuesta[1].PreguntaId">
+                      <input class="hidden" value="{{room_id}}" name="encuesta[1].CitaId">
+                      <input class="star star-5" id="star-6" type="radio" value="5" name="encuesta[1].Respuesta" name="star"/>
                       <label  data-toggle="tooltip" data-placement="top" title="Excepcional!"  class="star star-5" for="star-6"></label>
-                      <input class="star star-4" id="star-7" type="radio" name="star"/>
+                      <input class="star star-4" id="star-7" type="radio" value="4" name="encuesta[1].Respuesta" name="star"/>
                       <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-7"></label>
-                      <input class="star star-3" id="star-8" type="radio" name="star"/>
+                      <input class="star star-3" id="star-8" type="radio" value="3" name="encuesta[1].Respuesta" name="star"/>
                       <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-8"></label>
-                      <input class="star star-2" id="star-9" type="radio" name="star"/>
+                      <input class="star star-2" id="star-9" type="radio" value="2" name="encuesta[1].Respuesta" name="star"/>
                       <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-9"></label>
-                      <input class="star star-1" id="star-10" type="radio" name="star"/>
+                      <input class="star star-1" id="star-10" type="radio" value="1" name="encuesta[1].Respuesta" name="star"/>
                       <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-10"></label>
-                    </form>
+                 
                   </div>
                 </div>
                 <div class="form-group">
                   <label >¿Recomendaría a sus familiares y amigos esta IPS?</label>
                   <div class="stars">
-                    <form action="">
-                      <input  class="star star-5" id="star-11" type="radio" name="star"/>
+                  
+                      <input class="hidden" value="{{client_id}}" name="encuesta[2].UsuarioId">
+                      <input class="hidden" value="3" name="encuesta[2].PreguntaId">
+                      <input class="hidden" value="{{room_id}}" name="encuesta[2].CitaId">
+                      <input  class="star star-5" id="star-11" type="radio"  value="5" name="encuesta[2].Respuesta"/>
                       <label data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-11"></label>
-                      <input class="star star-4" id="star-12" type="radio" name="star"/>
+                      <input class="star star-4" id="star-12" type="radio"value="4" name="encuesta[2].Respuesta" />
                       <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-12"></label>
-                      <input class="star star-3" id="star-13" type="radio" name="star"/>
+                      <input class="star star-3" id="star-13" type="radio" value="3" name="encuesta[2].Respuesta" />
                       <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-13"></label>
-                      <input class="star star-2" id="star-14" type="radio" name="star"/>
+                      <input class="star star-2" id="star-14" type="radio" value="2" name="encuesta[2].Respuesta" />
                       <label  data-toggle="tooltip" data-placement="top" title="Regular!"class="star star-2" for="star-14"></label>
-                      <input class="star star-1" id="star-15" type="radio" name="star"/>
+                      <input class="star star-1" id="star-15" type="radio" value="1" name="encuesta[2].Respuesta" />
                       <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-15"></label>
-                    </form>
+                  
                   </div>
                 </div>
 
@@ -287,8 +296,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              
+              <button type="button" onclick="GuardarEncuesta()" class="btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
@@ -422,3 +431,11 @@
 </body>
 
 </html>
+
+<script>
+
+
+
+
+</script>
+

@@ -1,7 +1,31 @@
 
+   var ural="https://appcita.viva1a.com.co:8051/teleconsulta/";
+   //var ural ="http://localhost:56508/teleconsulta/"
+
+
+
+  function GuardarEncuesta(){
+    debugger
+  var form =  $("#EncuestaForm").serialize()
+    $.ajax({
+  
+  url : ural+'api/telellamada/GuardarEncuesta',
+  type : 'POST',
+  data :form ,  
+
+  success : function(data) {              
+  alert('Guardado Correcto')
+  },
+  error : function(request,error)
+  {
+      
+  }
+  });
+  }
 
 (function(){
-
+   
+  $("#CalificacionLlamada").modal('toggle');
    scrollAbajo= function(ok){
      debugger
 
@@ -43,8 +67,11 @@ $('body').on('load','img',function(){
   var intials = this.loadingParams.nombreRemisor.charAt(0);
  $('#profileImage').text(intials);
   
-    var ural="https://appcita.viva1a.com.co:8051/teleconsulta/";
-  //var ural ="http://localhost:56508/teleconsulta/"
+
+
+
+  
+  
 
   var   connection = new signalR.HubConnectionBuilder().withUrl(ural+"chatHub")
   .configureLogging(signalR.LogLevel.Information)
@@ -135,7 +162,7 @@ $('body').on('load','img',function(){
 
                   this.$chatHistoryList.append(template(context));
                   
-                  this.$textarea.val(''); 
+               
                   this.isMensajeConImage=false;      
                   this.scrollToBottom();
               
