@@ -4275,7 +4275,7 @@ Call.prototype.onUserMediaError_ = function(error) {
   var errorMessage = "Failed to get access to local media. Error name was " + error.name + ". Continuing without sending a stream.";
   this.onError_("getUserMedia error: " + errorMessage);
   this.errorMessageQueue_.push(error);
-  alert(errorMessage);
+  //alert(errorMessage);
 };
 Call.prototype.maybeCreatePcClientAsync_ = function() {
   return new Promise(function(resolve, reject) {
