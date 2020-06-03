@@ -3612,12 +3612,7 @@ var AppController = function(loadingParams) {
       $(UI_CONSTANTS.confirmJoinButton).onclick = function() {
         debugger
        
-        if((!($("#cbox3").is(":checked") )) 
-            && this.loadingParams_.tipo=="P"
-            ){
-          alert('Debe aceptar consentimiento informado para continuar.')
-          return
-        }
+  
         this.hide_(confirmJoinDiv);
         var recentlyUsedList = new RoomSelection.RecentlyUsedList;
         recentlyUsedList.pushRecentRoom(this.loadingParams_.roomId);
@@ -3705,7 +3700,7 @@ AppController.prototype.setupUi_ = function() {
 };
 AppController.prototype.finishCallSetup_ = function(roomId) {
   debugger
-  this.call_.start(roomId);
+  this.call_.restart(roomId);
   debugger
   this.setupUi_();
   if (!isChromeApp()) {
@@ -3742,6 +3737,9 @@ AppController.prototype.hangup_ = function() {
   var path =  "/colgarremoto/"+this.loadingParams_.url ;
   sendAsyncUrlRequest("POST", path)
 };
+
+
+
 AppController.prototype.onRemoteHangup_ = function() {
   debugger
   this.displayStatus_("El otro participante de la conferencia ha cerrado su sesión");
@@ -3749,8 +3747,8 @@ AppController.prototype.onRemoteHangup_ = function() {
   this.call_.onRemoteHangup();
   if(this.loadingParams_.tipo=="P"){
     $("#CalificacionLlamada").modal('toggle');
-    seguirContandoTiempo=false;
   }
+  seguirContandoTiempo=false;
     var path =  "/colgarremoto/"+this.loadingParams_.url ;
     sendAsyncUrlRequest("POST", path)
 };
@@ -4064,9 +4062,9 @@ Call.prototype.queueCleanupMessages_ = function() {
 Call.prototype.clearCleanupQueue_ = function() {
   apprtc.windowPort.sendMessage({action:Constants.QUEUECLEAR_ACTION});
 };
-Call.prototype.restart = function() {
+Call.prototype.restart = function(roomid) {
   this.requestMediaAndIceServers_();
-  this.start(this.params_.previousRoomId);
+  this.start(roomid);
 };
 Call.prototype.hangup = function(async) {
   this.startTime = null;
@@ -4137,6 +4135,7 @@ Call.prototype.getLeaveUrl_ = function() {
   return this.roomServer_ + "/leave/" + this.params_.roomId + "/" + this.params_.clientId;
 };
 Call.prototype.onRemoteHangup = function() {
+  debugger
   this.startTime = null;
   this.params_.isInitiator = true;
   if (this.pcClient_) {
@@ -4916,6 +4915,7 @@ PeerConnectionClient.prototype.onIceCandidate_ = function(event) {
   }
 };
 PeerConnectionClient.prototype.onSignalingStateChanged_ = function() {
+
   if (!this.pc_) {
     return;
   }

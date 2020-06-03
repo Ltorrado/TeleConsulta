@@ -1,7 +1,7 @@
 
 var startTime;
 var seguirContandoTiempo=true;
-$('[data-toggle="tooltip"]').tooltip();  
+
 function display() {
     // later record end time
     var endTime = new Date();
@@ -22,7 +22,7 @@ function display() {
 
     // get minutes
     var minutes = Math.round(timeDiff % 60);
-debugger
+
 if(minutes.toString().length==1){
    minutes="0"+minutes;
 }

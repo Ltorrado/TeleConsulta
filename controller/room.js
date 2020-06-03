@@ -41,11 +41,6 @@ var addClientToRoom = function (request, roomId, clientId, isLoopback, callback)
 
       return;
     }  else {
-
-    
-
-
-
       room.join(clientId, function (error, client, otherClient){
         if(error){
           callback(error, {
@@ -136,6 +131,7 @@ var sendMessageToCollider = function (request, roomId, clientId, message, callba
 };
 
 var removeClientFromRoom = function (host, roomId, clientId, callback) {
+  debugger
   var key = Common.getCacheKeyForRoom(host, roomId);
 
   rooms.get(key, function (error, room) {
@@ -206,6 +202,15 @@ exports.main = {
           return console.dir(error);
       }
       DatosCita = JSON.parse(body);
+
+      removeClientFromRoom(request.headers['host'],  DatosCita.roomId, DatosCita.clienteId, function (error, result) {
+        if (error) {
+          console.log('Room ' + DatosCita.roomId + ' has state ' + result.room_state);
+        }
+  
+        console.log('Room ' + DatosCita.roomId+ ' has state ' + result.room_state);
+        
+      });
       
       var params = Common.getRoomParameters(request, DatosCita.roomId, DatosCita.clienteId, null);
       params["textoMostrar"] =DatosCita.mensaje;
