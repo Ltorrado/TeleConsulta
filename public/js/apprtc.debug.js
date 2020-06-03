@@ -6060,7 +6060,7 @@ apprtc.windowPort = apprtc.windowPort || {};
     try {
       port.postMessage(message);
     } catch (ex) {
-      trace("Error sending message via port: " + ex);
+      trace("Error sending message via port: como tal no se que pasa" + ex);  
     }
   };
   apprtc.windowPort.addMessageListener = function(listener) {
