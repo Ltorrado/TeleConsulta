@@ -3648,17 +3648,23 @@ AppController.prototype.createCall_ = function() {
       }
     }
   }
-  this.call_.onremotehangup = this.onRemoteHangup_.bind(this);
+ // this.call_.onremotehangup = this.onRemoteHangup_.bind(this);
   this.call_.onremotesdpset = this.onRemoteSdpSet_.bind(this);
   this.call_.onremotestreamadded = this.onRemoteStreamAdded_.bind(this);
   this.call_.onlocalstreamadded = this.onLocalStreamAdded_.bind(this);
   this.call_.onsignalingstatechange = this.infoBox_.updateInfoDiv.bind(this.infoBox_);
-  this.call_.oniceconnectionstatechange = this.infoBox_.updateInfoDiv.bind(this.infoBox_);
+  this.call_.oniceconnectionstatechange = this.onRemoteHangup_.bind(this);
   this.call_.onnewicecandidate = this.infoBox_.recordIceCandidateTypes.bind(this.infoBox_);
   this.call_.onerror = this.displayError_.bind(this);
   this.call_.onstatusmessage = this.displayStatus_.bind(this);
   this.call_.oncallerstarted = this.displaySharingInfo_.bind(this);
 };
+AppController.prototype.AlertarCambioConexion_ = function() {
+
+alert('ok')
+this.onRemoteHangup2_();
+}
+
 AppController.prototype.showRoomSelection_ = function() {
   var roomSelectionDiv = $(UI_CONSTANTS.roomSelectionDiv);
   this.roomSelection_ = new RoomSelection(roomSelectionDiv, UI_CONSTANTS);
@@ -3738,8 +3744,6 @@ AppController.prototype.hangup_ = function() {
   sendAsyncUrlRequest("POST", path)
 };
 
-
-
 AppController.prototype.onRemoteHangup_ = function() {
   debugger
   this.displayStatus_("El otro participante de la conferencia ha cerrado su sesión");
@@ -3752,6 +3756,8 @@ AppController.prototype.onRemoteHangup_ = function() {
     var path =  "/colgarremoto/"+this.loadingParams_.url ;
     sendAsyncUrlRequest("POST", path)
 };
+
+
 AppController.prototype.onRemoteSdpSet_ = function(hasRemoteVideo) {
   if (hasRemoteVideo) {
     trace("Waiting for remote video.");
@@ -3855,7 +3861,7 @@ AppController.prototype.transitionToDone_ = function() {
 AppController.prototype.onRejoinClick_ = function() {
   this.deactivate_(this.rejoinDiv_);
   this.hide_(this.rejoinDiv_);
-  this.call_.restart();
+  this.call_.restart(this.loadingParams_.roomId);
   this.setupUi_();
 };
 AppController.prototype.onNewRoomClick_ = function() {
@@ -4387,6 +4393,8 @@ Call.prototype.onError_ = function(message) {
     this.onerror(message);
   }
 };
+
+
 var Constants = {WS_ACTION:"ws", XHR_ACTION:"xhr", QUEUEADD_ACTION:"addToQueue", QUEUECLEAR_ACTION:"clearQueue", EVENT_ACTION:"event", WS_CREATE_ACTION:"create", WS_EVENT_ONERROR:"onerror", WS_EVENT_ONMESSAGE:"onmessage", WS_EVENT_ONOPEN:"onopen", WS_EVENT_ONCLOSE:"onclose", WS_EVENT_SENDERROR:"onsenderror", WS_SEND_ACTION:"send", WS_CLOSE_ACTION:"close"};
 var InfoBox = function(infoDiv, call, versionInfo) {
   this.infoDiv_ = infoDiv;
@@ -4929,12 +4937,16 @@ PeerConnectionClient.prototype.onIceConnectionStateChanged_ = function() {
     return;
   }
   trace("ICE connection state changed to: " + this.pc_.iceConnectionState);
+  debugger
+  if(this.pc_.iceConnectionState=="disconnected"){
+    if (this.oniceconnectionstatechange) {
+      this.oniceconnectionstatechange();
+    }
+  }
   if (this.pc_.iceConnectionState === "completed") {
     trace("ICE complete time: " + (window.performance.now() - this.startTime_).toFixed(0) + "ms.");
   }
-  if (this.oniceconnectionstatechange) {
-    this.oniceconnectionstatechange();
-  }
+
 };
 PeerConnectionClient.prototype.filterIceCandidate_ = function(candidateObj) {
   var candidateStr = candidateObj.candidate;
@@ -6060,7 +6072,7 @@ apprtc.windowPort = apprtc.windowPort || {};
     try {
       port.postMessage(message);
     } catch (ex) {
-      trace("Error sending message via port: como tal no se que pasa" + ex);  
+      trace("Error sending message via port: como tal no se que" + ex);  
     }
   };
   apprtc.windowPort.addMessageListener = function(listener) {
