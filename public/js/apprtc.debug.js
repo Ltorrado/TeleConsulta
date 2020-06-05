@@ -3550,7 +3550,7 @@ Analytics.prototype.sendEventRequest_ = function(eventObj) {
 var enums = {"EventType":{"ICE_CONNECTION_STATE_CONNECTED":3, "ROOM_SIZE_2":2}, "RequestField":{"MessageType":{"EVENT":"event"}, "CLIENT_TYPE":"client_type", "EventField":{"EVENT_TIME_MS":"event_time_ms", "ROOM_ID":"room_id", "EVENT_TYPE":"event_type", "FLOW_ID":"flow_id"}, "TYPE":"type", "EVENT":"event", "REQUEST_TIME_MS":"request_time_ms"}, "ClientType":{"UNKNOWN":0, "ANDROID":4, "DESKTOP":2, "IOS":3, "JS":1}};
 var remoteVideo = $("#remote-video");
 var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button",videoDerecho:"#derecho-video",confirmCondiciones:"#confirm-derechos-div", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", chatViva:"#chatdiv",chatSvg:"#chatSvg",localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", privacyLinks:"#privacy", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", 
-rejoinLink:"#rejoin-link", roomLinkHref:"#room-link-href", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
+rejoinLink:"#rejoin-link", roomLinkHref:"#room-link-href",pictureanpicture:"#togglePipButton", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
 var AppController = function(loadingParams) {
   debugger
   trace("Initializing; server= " + loadingParams.roomServer + ".");
@@ -3577,6 +3577,7 @@ var AppController = function(loadingParams) {
   this.muteVideoIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteVideoSvg);
   this.fullscreenIconSet_ = new AppController.IconSet_(UI_CONSTANTS.fullscreenSvg);
   this.ChatIconSet_ = new AppController.IconSet_(UI_CONSTANTS.chatSvg);
+  this.pictureIcon = $(UI_CONSTANTS.pictureanpicture);
   this.chatVivaDiv_ = $(UI_CONSTANTS.chatViva);
   debugger
   this.loadingParams_ = loadingParams;
@@ -3828,6 +3829,7 @@ AppController.prototype.transitionToActive_ = function() {
   empezarTiempo();
   this.activate_(this.videosDiv_);
   this.show_(this.hangupSvg_);
+  this.show_(this.pictureIcon);
   this.displayStatus_("");
 };
 AppController.prototype.transitionToWaiting_ = function() {
@@ -3854,6 +3856,7 @@ AppController.prototype.transitionToDone_ = function() {
   this.deactivate_(this.remoteVideo_);
   this.deactivate_(this.miniVideo_);
   this.hide_(this.hangupSvg_);
+  this.hide_(this.pictureIcon);
   this.activate_(this.rejoinDiv_);
   this.show_(this.rejoinDiv_);
   this.displayStatus_("");
@@ -5659,6 +5662,7 @@ SignalingChannel.prototype.send = function(message) {
   }
 };
 SignalingChannel.prototype.getWssPostUrl = function() {
+  debugger
   return this.wssPostUrl_ + "/" + this.roomId_ + "/" + this.clientId_;
 };
 function extractStatAsInt(stats, statObj, statName) {

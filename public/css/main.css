@@ -434,6 +434,18 @@ svg:hover {
 #chatSvg.on {
   background: #407cf7;
 }
+#togglePipButton:hover circle {
+  fill: #407cf7;
+}
+
+#togglePipButton {
+  transition: 440ms;
+}
+
+#togglePipButton:hover,
+#togglePipButton.on {
+  background: #407cf7;
+}
 
 #profileImage {
   float: left;
@@ -453,7 +465,7 @@ svg:hover {
 }
 
 #hangup {
-  transition: 440ms;
+  transition: 550ms;
 }
 
 #hangup:hover {
