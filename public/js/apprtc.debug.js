@@ -4032,6 +4032,7 @@ var Call = function(params) {
   this.roomServer_ = params.roomServer || "";
   this.channel_ = new SignalingChannel(params.wssUrl, params.wssPostUrl);
   this.channel_.onmessage = this.onRecvSignalingChannelMessage_.bind(this);
+  this.channel_.cerradoInesperado=this.seCayoServicio.bind(this);
   this.pcClient_ = null;
   this.localStream_ = null;
   this.errorMessageQueue_ = [];
@@ -4050,6 +4051,16 @@ var Call = function(params) {
   this.getIceServersPromise_ = null;
   this.requestMediaAndIceServers_();
 };
+
+
+Call.prototype.seCayoServicio = function() {
+debugger
+this.hangup(false);
+debugger
+this.restart(this.params_.previousRoomId);
+
+}
+
 Call.prototype.requestMediaAndIceServers_ = function() {
   this.getMediaPromise_ = this.maybeGetMedia_();
   this.getIceServersPromise_ = this.maybeGetIceServers_();
@@ -4058,6 +4069,7 @@ Call.prototype.isInitiator = function() {
   return this.params_.isInitiator;
 };
 Call.prototype.start = function(roomId) {
+  debugger
   this.connectToRoom_(roomId);
   if (this.params_.isLoopback) {
     setupLoopback(this.params_.wssUrl, roomId);
@@ -4072,7 +4084,9 @@ Call.prototype.clearCleanupQueue_ = function() {
   apprtc.windowPort.sendMessage({action:Constants.QUEUECLEAR_ACTION});
 };
 Call.prototype.restart = function(roomid) {
+  debugger
   this.requestMediaAndIceServers_();
+  debugger
   this.start(roomid);
 };
 Call.prototype.hangup = function(async) {
@@ -5558,6 +5572,7 @@ function setDefaultCodec(mLine, payload) {
   this.registered_ = false;
   this.onerror = null;
   this.onmessage = null;
+  this.cerradoInesperado= null;
 };
 SignalingChannel.prototype.open = function() {
   if (this.websocket_) {
@@ -5577,15 +5592,23 @@ SignalingChannel.prototype.open = function() {
         trace("Signaling channel error.");
       };
       this.websocket_.onclose = function(event) {
+       
         trace("Channel closed with code:" + event.code + " reason:" + event.reason);
-        this.websocket_ = null;
-        this.registered_ = false;
+  
+        this.cerradoInesperado('');
       };
       if (this.clientId_ && this.roomId_) {
         this.register(this.roomId_, this.clientId_);
       }
       resolve();
     }.bind(this);
+    this.websocket_.cerradoInesperado = function(event) {
+      this.close();
+ 
+      trace("se serrro esa vaian nojoda" + event.data);
+      this.cerradoInesperado();
+    }.bind(this);
+
     this.websocket_.onmessage = function(event) {
       trace("WSS->C: " + event.data);
       var message = parseJSON(event.data);
