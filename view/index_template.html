@@ -21,426 +21,460 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>  
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>  
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'> 
+  <link href="https://fonts.googleapis.com/css2?family=Kodchasan&amp;display=swap" rel="stylesheet">
  
 </head>
 
 <body>
-<div class="row">
-  <div class="col-md-9" id="vidi">
-    <div style="position: absolute; z-index: 1;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png">
-      <div id="time" style="margin-left: 20%;"></div>
+  <div>
+    <div _ngcontent-fao-c3="" class="bannerSuperior row">
+      <div _ngcontent-fao-c3="" class="banner row">
+        <div _ngcontent-fao-c3="" class="" style="width: 50%;">
+          <img _ngcontent-fao-c3="" class="imagenlogo" src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png">
+        </div>
+        <div _ngcontent-fao-c3="" class="bannerUser">
+          <label _ngcontent-fao-c3="" class="nameUser">Prueba Peréz Molina</label><br _ngcontent-fao-c3="">
+          <label _ngcontent-fao-c3="" class="afiliadoa">Afiliado: COOMEVA</label><div _ngcontent-fao-c3="" class="dropdown">
+            <img _ngcontent-fao-c3="" class="userImage " src="https://appcita.viva1a.com.co:8051/citasweb/assets/img/personagris.png">
+            <div _ngcontent-fao-c3="" class="dropdown-content"><a _ngcontent-fao-c3="">CERRAR SESIÓN</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-   <div id="videos">
+  <div class="row" style="height: 76vh;
+  background-color: #649dd333;
+  padding: 13px;
+">
+    <div class="col-md-9" style="height: 100%;" id="vidi">
+      <div style="position: absolute; z-index: 1;">
+        <div id="time" style="margin-left: 20%;"></div>
+      </div>
       
-      <video id="mini-video" autoplay playsinline muted></video>
-      <video id="remote-video" autoplay playsinline></video>
-      <video id="local-video" autoplay playsinline muted></video>
-   
-    </div>
-    <div class="wrapper ">
-      <div id="derecho-video" class="h_iframe">
-         
+     <div id="videos">
         
-       </div>
-    
-  </div>
-  
-  
-    <div id="room-selection" class="hidden">
-      <h2>Consultorio Virtual VIVA 1A IPS</h2>
-      <p id="instructions">Por favor digite el codigo de la consulta</p>
-      <div></div>
-      <div id="room-id-input-div">
-        <input type="text" id="room-id-input" autofocus/>
-        <label class="error-label hidden" for="room-id-input" id="room-id-input-label">El codigo de consulta no es valido</label>
-      </div>
-      <div id="room-id-input-buttons">
-        <button id="join-button">INICIAR</button>
-        <button style="display: none;" id="random-button">RANDOM</button>
-      </div>
-    </div>
-    
-      <div id="recent-rooms" style="display: none;">
-        <p>Recently used rooms:</p>
-        <ul id="recent-rooms-list"></ul>
-      </div>
-   
-  
-      <div id="confirm-join-div" class="hidden Concentimiento">    
-        <!--<div style="position: absolute;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png"></div>-->
-        <div style="font-size: 1.1em !important;">      
-         {{textoMostrar}} <span id="confirm-join-room-span" style="display: none;"></span>
-        </div>
-        <div id="confirm-derechos-div" style="font-size: 0.7em !important;text-align: left;margin-bottom: 0!important;" class="hidden">   
-         <div class="col-md-12 row" >
-          <div class="col-md-5" style="width: 100%;"></div>
-          <div class="col-md-4" style="line-height: 0;font-size: 0.7em">
-            <!-- <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto <span    data-toggle="modal" data-target="#exampleModal" style="text-decoration: underline;" >terminos y condiciones</span></label><br>
-            <label><input type="checkbox" id="cbox2" value="first_checkbox"> Acepto  <span   data-toggle="modal" data-target="#politicaprivacidad" style="text-decoration: underline;" >politica de privacidad</span></label><br>
-           -->
-          </div> 
-         </div>
-         </div>
-          <button  id="confirm-join-button">INICIAR</button>
-    
-        </div>
-  
-    <footer>
-      <div id="sharing-div">
-        <div id="room-link">Estas conectado al consultorio virtual de VIVA 1A IPS. Esperando conexión de otro participante <a id="room-link-href" style="display: none;" href="{{room_link}}" target="_blank">{{room_link}}</a></div>
-      </div> 
-      <div id="info-div" style="display: none;">Code for Node AppRTC is available from <a href="http://github.com/webrtc/apprtc" title="GitHub repo for AppRTC">github.com/webrtc/apprtc</a></div>
-      <div id="status-div"></div>
-      <div id="rejoin-div" class="hidden"><span>Has abandonado la llamada.</span> <button id="rejoin-button" style="display: none;">REJOIN</button><button id="new-room-button" style="display: none;">NEW ROOM</button><button id="calificacion-button">Califica tu experiencia</button></div>
-    </footer>
-    <div id="icons" class="hidden">
-      <svg id="mute-audio" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
-      <title>Title</title>
-        <circle cx="24" cy="24" r="34">
-          <title>Mute</title>
-        </circle>
-        <path class="on" transform="scale(0.6), translate(17,18)" d="M38 22h-3.4c0 1.49-.31 2.87-.87 4.1l2.46 2.46C37.33 26.61 38 24.38 38 22zm-8.03.33c0-.11.03-.22.03-.33V10c0-3.32-2.69-6-6-6s-6 2.68-6 6v.37l11.97 11.96zM8.55 6L6 8.55l12.02 12.02v1.44c0 3.31 2.67 6 5.98 6 .45 0 .88-.06 1.3-.15l3.32 3.32c-1.43.66-3 1.03-4.62 1.03-5.52 0-10.6-4.2-10.6-10.2H10c0 6.83 5.44 12.47 12 13.44V42h4v-6.56c1.81-.27 3.53-.9 5.08-1.81L39.45 42 42 39.46 8.55 6z" fill="white"/>
-        <path class="off" transform="scale(0.6), translate(17,18)"  d="M24 28c3.31 0 5.98-2.69 5.98-6L30 10c0-3.32-2.68-6-6-6-3.31 0-6 2.68-6 6v12c0 3.31 2.69 6 6 6zm10.6-6c0 6-5.07 10.2-10.6 10.2-5.52 0-10.6-4.2-10.6-10.2H10c0 6.83 5.44 12.47 12 13.44V42h4v-6.56c6.56-.97 12-6.61 12-13.44h-3.4z"  fill="white"/>
-      </svg>
-      <svg id="mute-video" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
-        <circle cx="24" cy="24" r="34">
-          <title>Apagar Video</title>
-        </circle>
-        <path class="on" transform="scale(0.6), translate(17,16)" d="M40 8H15.64l8 8H28v4.36l1.13 1.13L36 16v12.36l7.97 7.97L44 36V12c0-2.21-1.79-4-4-4zM4.55 2L2 4.55l4.01 4.01C4.81 9.24 4 10.52 4 12v24c0 2.21 1.79 4 4 4h29.45l4 4L44 41.46 4.55 2zM12 16h1.45L28 30.55V32H12V16z" fill="white"/>
-        <path class="off" transform="scale(0.6), translate(17,16)" d="M40 8H8c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm-4 24l-8-6.4V32H12V16h16v6.4l8-6.4v16z" fill="white"/>
-      </svg>
-      <svg id="fullscreen" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
-        <circle cx="24" cy="24" r="34">
-          <title>Ver Pantalla Completa</title>
-        </circle>
-        <path class="on" transform="scale(0.8), translate(7,6)" d="M10 32h6v6h4V28H10v4zm6-16h-6v4h10V10h-4v6zm12 22h4v-6h6v-4H28v10zm4-22v-6h-4v10h10v-4h-6z" fill="white"/>
-        <path class="off" transform="scale(0.8), translate(7,6)"  d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z" fill="white"/>
-      </svg>
-    
-      <svg id="chatSvg"  xmlns="http://www.w3.org/2000/svg"  width="48" height="48" viewbox="-10 -10 68 68">
-      <circle cx="24" cy="24" r="34">
-        <title>Ocultar Chat</title>
-      </circle>
-   <path class="on"  fill="white" transform="scale(0.2), translate(30,30)"  d="M26.875,21.5c-8.86035,0 -16.125,7.26465 -16.125,16.125v86c0,8.86035 7.26465,16.125 16.125,16.125h16.125v26.16114l39.2627,-26.16114h49.88672l10.49804,10.54004l7.64258,-7.64258l-120.72754,-120.68554v-0.46192zM43.88183,21.5l10.75,10.75h79.74317c2.98145,0 5.375,2.43555 5.375,5.375v79.74317l10.07813,10.07813c0.29395,-1.25977 0.67188,-2.47754 0.67188,-3.82129v-86c0,-8.90234 -7.22266,-16.125 -16.125,-16.125zM25.02734,32.62793l31.87207,31.87207h-3.14942v10.75h13.89942l10.75,10.75h-24.64942v10.75h35.39942l32.25,32.25h-42.41211l-25.2373,16.83886v-16.83886h-26.875c-3.02344,0 -5.375,-2.35156 -5.375,-5.375v-86c0,-2.35156 1.46973,-4.24121 3.52734,-4.99707zM32.25,64.5v10.75h10.75v-10.75zM86.88183,64.5l10.75,10.75h31.36817v-10.75zM32.25,86v10.75h10.75v-10.75zM108.38183,86l10.75,10.75h9.86817v-10.75z"></path>
-
-          <path class="off" transform="scale(0.2), translate(30,30)"  d="M28.66667,21.5c-7.88333,0 -14.26335,6.45 -14.26335,14.33333l-0.05599,85.986c0,7.91917 6.41417,14.34733 14.33333,14.34733h14.31934v28.66667l28.66667,-28.66667h71.66667c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-86c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333zM93.16667,50.16667l28.66667,28.66667l-28.66667,28.66667v-21.5h-43v-14.33333h43z" fill="white"></path>
-        
-        </svg>
-
-
-
-        <svg id="togglePipButton" class="hidden"  xmlns="http://www.w3.org/2000/svg"  width="48" height="48" viewbox="-10 -10 68 68">
-          <circle cx="24" cy="24" r="34">
-            <title>picture and picture</title>
-          </circle>
-   -  <path class="off"  fill="white" transform="scale(0.2), translate(30,30)"   d="M10.32,27.52c-0.91375,0 -1.78719,0.36281 -2.43219,1.00781c-0.645,0.645 -1.00781,1.51844 -1.00781,2.43219v59.39375c1.00781,-0.57781 2.19031,-0.91375 3.44,-0.91375h3.44v-55.04h144.48v116.96h-55.04v3.44c0,1.24969 -0.33594,2.43219 -0.91375,3.44h59.39375c0.91375,0 1.78719,-0.36281 2.43219,-1.00781c0.645,-0.645 1.00781,-1.51844 1.00781,-2.43219v-123.84c0,-0.91375 -0.36281,-1.78719 -1.00781,-2.43219c-0.645,-0.645 -1.51844,-1.00781 -2.43219,-1.00781zM123.84,44.72c-1.23625,-0.01344 -2.39187,0.63156 -3.02344,1.70656c-0.61813,1.075 -0.61813,2.39187 0,3.46687c0.63156,1.075 1.78719,1.72 3.02344,1.70656h12.33563l-35.40781,35.40781c-0.90031,0.86 -1.26313,2.15 -0.94063,3.34594c0.30906,1.20938 1.24969,2.15 2.45906,2.45906c1.19594,0.3225 2.48594,-0.04031 3.34594,-0.94063l35.40781,-35.40781v12.33562c-0.01344,1.23625 0.63156,2.39188 1.70656,3.02344c1.075,0.61813 2.39187,0.61813 3.46687,0c1.075,-0.63156 1.72,-1.78719 1.70656,-3.02344v-24.08zM10.32,96.32c-1.89469,0 -3.44,1.54531 -3.44,3.44v55.04c0,1.89469 1.54531,3.44 3.44,3.44h82.56c1.89469,0 3.44,-1.54531 3.44,-3.44v-55.04c0,-1.89469 -1.54531,-3.44 -3.44,-3.44z"></path>
-
-   <path  class="on"  fill="white" transform="scale(0.2), translate(30,30)"  d="M10.32,27.52c-0.91375,0 -1.78719,0.36281 -2.43219,1.00781c-0.645,0.645 -1.00781,1.51844 -1.00781,2.43219v59.39375c1.00781,-0.57781 2.19031,-0.91375 3.44,-0.91375h3.44v-55.04h144.48v116.96h-55.04v3.44c0,1.24969 -0.33594,2.43219 -0.91375,3.44h59.39375c0.91375,0 1.78719,-0.36281 2.43219,-1.00781c0.645,-0.645 1.00781,-1.51844 1.00781,-2.43219v-123.84c0,-0.91375 -0.36281,-1.78719 -1.00781,-2.43219c-0.645,-0.645 -1.51844,-1.00781 -2.43219,-1.00781zM123.84,44.72c-1.23625,-0.01344 -2.39187,0.63156 -3.02344,1.70656c-0.61813,1.075 -0.61813,2.39187 0,3.46687c0.63156,1.075 1.78719,1.72 3.02344,1.70656h12.33563l-35.40781,35.40781c-0.90031,0.86 -1.26313,2.15 -0.94063,3.34594c0.30906,1.20938 1.24969,2.15 2.45906,2.45906c1.19594,0.3225 2.48594,-0.04031 3.34594,-0.94063l35.40781,-35.40781v12.33562c-0.01344,1.23625 0.63156,2.39188 1.70656,3.02344c1.075,0.61813 2.39187,0.61813 3.46687,0c1.075,-0.63156 1.72,-1.78719 1.70656,-3.02344v-24.08zM10.32,96.32c-1.89469,0 -3.44,1.54531 -3.44,3.44v55.04c0,1.89469 1.54531,3.44 3.44,3.44h82.56c1.89469,0 3.44,-1.54531 3.44,-3.44v-55.04c0,-1.89469 -1.54531,-3.44 -3.44,-3.44zM13.76,103.2h75.68v48.16h-75.68z"></path>
-
-          
-            </svg>
-
-      <svg id="hangup" class="hidden" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
-        <circle cx="24" cy="24" r="34">
-          <title>Colgar</title>
-        </circle>
-        <path transform="scale(0.7), translate(11,10)" d="M24 18c-3.21 0-6.3.5-9.2 1.44v6.21c0 .79-.46 1.47-1.12 1.8-1.95.98-3.74 2.23-5.33 3.7-.36.35-.85.57-1.4.57-.55 0-1.05-.22-1.41-.59L.59 26.18c-.37-.37-.59-.87-.59-1.42 0-.55.22-1.05.59-1.42C6.68 17.55 14.93 14 24 14s17.32 3.55 23.41 9.34c.37.36.59.87.59 1.42 0 .55-.22 1.05-.59 1.41l-4.95 4.95c-.36.36-.86.59-1.41.59-.54 0-1.04-.22-1.4-.57-1.59-1.47-3.38-2.72-5.33-3.7-.66-.33-1.12-1.01-1.12-1.8v-6.21C30.3 18.5 27.21 18 24 18z" fill="white"/>
-      </svg>
+        <video id="mini-video" autoplay playsinline muted></video>
+        <video id="remote-video" autoplay playsinline></video>
+        <video id="local-video" autoplay playsinline muted></video>
      
-    </div>
-    <div>
-  
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Terminos y condiciones</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-              <button type="button" class="btn btn-primary">Aceptar</button>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="modal fade" id="politicaprivacidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Plitica de privacidad</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-              <button type="button" class="btn btn-primary">Aceptar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="concentimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Concentimiento informado</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-              <button type="button" class="btn btn-primary">Aceptar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div id="myModal" class="modal">
-
-        <!-- The Close Button -->
-        <span class="close">&times;</span>
-      
-        <!-- Modal Content (The Image) -->
-        <img class="modal-content" id="img01">
-      
-        <!-- Modal Caption (Image Text) -->
-        <div id="caption"></div>
-      </div>
-
-
-      <div class="modal fade" id="CalificacionLlamada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Encuesta</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="EncuestaForm"  method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                  <label >¿Como calificaría si experiencia global respecto a los servicios de salud que ha recibido a través de su IPS?</label>
-                  <div class="stars">
-                  
-                      <input class="hidden" value="{{client_id}}" name="encuesta[0].UsuarioId">
-                      <input class="hidden" value="1" name="encuesta[0].PreguntaId">
-                      <input class="hidden" value="{{room_id}}" name="encuesta[0].CitaId">
-                      <input class="star star-5" id="star-5" type="radio" value="5" name="encuesta[0].Respuesta"/>
-                      <label  data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-5"></label>
-                      <input class="star star-4" id="star-4" type="radio" value="4" name="encuesta[0].Respuesta" />
-                      <label data-toggle="tooltip" data-placement="top" title="Excelente!"  class="star star-4" for="star-4"></label>
-                      <input class="star star-3" id="star-3" type="radio" value="3" name="encuesta[0].Respuesta" />
-                      <label    data-toggle="tooltip" data-placement="top" title="Bueno!"  class="star star-3" for="star-3"></label>
-                      <input class="star star-2" id="star-2" type="radio" value="2" name="encuesta[0].Respuesta" />
-                      <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-2"></label>
-                      <input class="star star-1" id="star-1" type="radio" value="1" name="encuesta[0].Respuesta" />
-                      <label data-toggle="tooltip" data-placement="top" title="Malo!"  class="star star-1" for="star-1"></label>
-                 
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label >¿Como califica el trato del personal médico o asistencial que le atendió en la consulta?</label>
-                  <div class="stars">
-                  
-                      <input class="hidden" value="{{client_id}}" name="encuesta[1].UsuarioId">
-                      <input class="hidden" value="2" name="encuesta[1].PreguntaId">
-                      <input class="hidden" value="{{room_id}}" name="encuesta[1].CitaId">
-                      <input class="star star-5" id="star-6" type="radio" value="5" name="encuesta[1].Respuesta" name="star"/>
-                      <label  data-toggle="tooltip" data-placement="top" title="Excepcional!"  class="star star-5" for="star-6"></label>
-                      <input class="star star-4" id="star-7" type="radio" value="4" name="encuesta[1].Respuesta" name="star"/>
-                      <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-7"></label>
-                      <input class="star star-3" id="star-8" type="radio" value="3" name="encuesta[1].Respuesta" name="star"/>
-                      <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-8"></label>
-                      <input class="star star-2" id="star-9" type="radio" value="2" name="encuesta[1].Respuesta" name="star"/>
-                      <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-9"></label>
-                      <input class="star star-1" id="star-10" type="radio" value="1" name="encuesta[1].Respuesta" name="star"/>
-                      <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-10"></label>
-                 
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label >¿Recomendaría a sus familiares y amigos esta IPS?</label>
-                  <div class="stars">
-                  
-                      <input class="hidden" value="{{client_id}}" name="encuesta[2].UsuarioId">
-                      <input class="hidden" value="3" name="encuesta[2].PreguntaId">
-                      <input class="hidden" value="{{room_id}}" name="encuesta[2].CitaId">
-                      <input  class="star star-5" id="star-11" type="radio"  value="5" name="encuesta[2].Respuesta"/>
-                      <label data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-11"></label>
-                      <input class="star star-4" id="star-12" type="radio"value="4" name="encuesta[2].Respuesta" />
-                      <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-12"></label>
-                      <input class="star star-3" id="star-13" type="radio" value="3" name="encuesta[2].Respuesta" />
-                      <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-13"></label>
-                      <input class="star star-2" id="star-14" type="radio" value="2" name="encuesta[2].Respuesta" />
-                      <label  data-toggle="tooltip" data-placement="top" title="Regular!"class="star star-2" for="star-14"></label>
-                      <input class="star star-1" id="star-15" type="radio" value="1" name="encuesta[2].Respuesta" />
-                      <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-15"></label>
-                  
-                  </div>
-                </div>
-
-
-              </form>
-
-            </div>
-            <div class="modal-footer">
-              
-              <button type="button" onclick="GuardarEncuesta()" class="btn btn-primary">Guardar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-  </div>
-  
-
-  </div>
-  
-
-
-<div  class="col-md-3" id="chatdiv">
-
-  <!-- partial:index.partial.html -->
-  <div class="container ">
-    
-    <div class="chat">
-      <div class="chat-header clearfix">
-        <div id="profileImage"></div>
-        <div class="chat-about">
-          <div class="chat-with"> {{nombreRemisor}}</div>
-        </div>
-        <i class="fa fa-star"></i>
-      </div> <!-- end chat-header -->
-      
-      <div class="chat-history" id="chathistory">
-        <ul>
-        
+      <div class="wrapper ">
+        <div id="derecho-video" class="h_iframe">
+           
           
-        </ul>
-        
-      </div> <!-- end chat-history -->
+         </div>
       
-      <div class="chat-message clearfix">
-          <img id="imagentumb" height="200" class="hidden">
-
-        <textarea name="message-to-send" id="message-to-send" placeholder ="Escriba su mensaje" rows="3"></textarea>
-                
-       
-           <input type="file" id="selectedFile" style="display: none;" />
-
-        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o" onclick="document.getElementById('selectedFile').click();"></i> 
-        
-        <button>Enviar</button>
-  
-      </div> <!-- end chat-message -->
-      
-    </div> <!-- end chat -->
+    </div>
     
-  </div> <!-- end container -->
+    
+      <div id="room-selection" class="hidden">
+        <h2>Consultorio Virtual VIVA 1A IPS</h2>
+        <p id="instructions">Por favor digite el codigo de la consulta</p>
+        <div></div>
+        <div id="room-id-input-div">
+          <input type="text" id="room-id-input" autofocus/>
+          <label class="error-label hidden" for="room-id-input" id="room-id-input-label">El codigo de consulta no es valido</label>
+        </div>
+        <div id="room-id-input-buttons">
+          <button id="join-button">INICIAR</button>
+          <button style="display: none;" id="random-button">RANDOM</button>
+        </div>
+      </div>
+      
+        <div id="recent-rooms" style="display: none;">
+          <p>Recently used rooms:</p>
+          <ul id="recent-rooms-list"></ul>
+        </div>
+     
+    
+        <div id="confirm-join-div" class="hidden Concentimiento">    
+          <!--<div style="position: absolute;"><img src="https://viva1a.com.co/wp-content/uploads/2019/03/img-logo-p.png"></div>-->
+          <div style="font-size: 1.1em !important;">      
+           {{textoMostrar}} <span id="confirm-join-room-span" style="display: none;"></span>
+          </div>
+          <div id="confirm-derechos-div" style="font-size: 0.7em !important;text-align: left;margin-bottom: 0!important;" class="hidden">   
+           <div class="col-md-12 row" >
+            <div class="col-md-5" style="width: 100%;"></div>
+            <div class="col-md-4" style="line-height: 0;font-size: 0.7em">
+              <!-- <label><input type="checkbox" id="cbox1" value="first_checkbox"> Acepto <span    data-toggle="modal" data-target="#exampleModal" style="text-decoration: underline;" >terminos y condiciones</span></label><br>
+              <label><input type="checkbox" id="cbox2" value="first_checkbox"> Acepto  <span   data-toggle="modal" data-target="#politicaprivacidad" style="text-decoration: underline;" >politica de privacidad</span></label><br>
+             -->
+            </div> 
+           </div>
+           </div>
+            <button  id="confirm-join-button">INICIAR</button>
+      
+          </div>
+    
+      <footer>
+        <div id="sharing-div">
+          <div id="room-link">Estas conectado al consultorio virtual de VIVA 1A IPS. Esperando conexión de otro participante <a id="room-link-href" style="display: none;" href="{{room_link}}" target="_blank">{{room_link}}</a></div>
+        </div> 
+        <div id="info-div" style="display: none;">Code for Node AppRTC is available from <a href="http://github.com/webrtc/apprtc" title="GitHub repo for AppRTC">github.com/webrtc/apprtc</a></div>
+        <div id="status-div"></div>
+        <div id="rejoin-div" class="hidden"><span>Has abandonado la llamada.</span> <button id="rejoin-button" style="display: none;">REJOIN</button><button id="new-room-button" style="display: none;">NEW ROOM</button><button id="calificacion-button">Califica tu experiencia</button></div>
+      </footer>
+   
+      <div>
+    
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Terminos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="politicaprivacidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Plitica de privacidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="concentimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Concentimiento informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div id="myModal" class="modal">
+  
+          <!-- The Close Button -->
+          <span class="close">&times;</span>
+        
+          <!-- Modal Content (The Image) -->
+          <img class="modal-content" id="img01">
+        
+          <!-- Modal Caption (Image Text) -->
+          <div id="caption"></div>
+        </div>
+  
+  
+        <div class="modal fade" id="CalificacionLlamada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Encuesta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="EncuestaForm"  method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label >¿Como calificaría si experiencia global respecto a los servicios de salud que ha recibido a través de su IPS?</label>
+                    <div class="stars">
+                    
+                        <input class="hidden" value="{{client_id}}" name="encuesta[0].UsuarioId">
+                        <input class="hidden" value="1" name="encuesta[0].PreguntaId">
+                        <input class="hidden" value="{{room_id}}" name="encuesta[0].CitaId">
+                        <input class="star star-5" id="star-5" type="radio" value="5" name="encuesta[0].Respuesta"/>
+                        <label  data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" value="4" name="encuesta[0].Respuesta" />
+                        <label data-toggle="tooltip" data-placement="top" title="Excelente!"  class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" value="3" name="encuesta[0].Respuesta" />
+                        <label    data-toggle="tooltip" data-placement="top" title="Bueno!"  class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" value="2" name="encuesta[0].Respuesta" />
+                        <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" value="1" name="encuesta[0].Respuesta" />
+                        <label data-toggle="tooltip" data-placement="top" title="Malo!"  class="star star-1" for="star-1"></label>
+                   
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label >¿Como califica el trato del personal médico o asistencial que le atendió en la consulta?</label>
+                    <div class="stars">
+                    
+                        <input class="hidden" value="{{client_id}}" name="encuesta[1].UsuarioId">
+                        <input class="hidden" value="2" name="encuesta[1].PreguntaId">
+                        <input class="hidden" value="{{room_id}}" name="encuesta[1].CitaId">
+                        <input class="star star-5" id="star-6" type="radio" value="5" name="encuesta[1].Respuesta" name="star"/>
+                        <label  data-toggle="tooltip" data-placement="top" title="Excepcional!"  class="star star-5" for="star-6"></label>
+                        <input class="star star-4" id="star-7" type="radio" value="4" name="encuesta[1].Respuesta" name="star"/>
+                        <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-7"></label>
+                        <input class="star star-3" id="star-8" type="radio" value="3" name="encuesta[1].Respuesta" name="star"/>
+                        <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-8"></label>
+                        <input class="star star-2" id="star-9" type="radio" value="2" name="encuesta[1].Respuesta" name="star"/>
+                        <label data-toggle="tooltip" data-placement="top" title="Regular!" class="star star-2" for="star-9"></label>
+                        <input class="star star-1" id="star-10" type="radio" value="1" name="encuesta[1].Respuesta" name="star"/>
+                        <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-10"></label>
+                   
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label >¿Recomendaría a sus familiares y amigos esta IPS?</label>
+                    <div class="stars">
+                    
+                        <input class="hidden" value="{{client_id}}" name="encuesta[2].UsuarioId">
+                        <input class="hidden" value="3" name="encuesta[2].PreguntaId">
+                        <input class="hidden" value="{{room_id}}" name="encuesta[2].CitaId">
+                        <input  class="star star-5" id="star-11" type="radio"  value="5" name="encuesta[2].Respuesta"/>
+                        <label data-toggle="tooltip" data-placement="top" title="Excepcional!" class="star star-5" for="star-11"></label>
+                        <input class="star star-4" id="star-12" type="radio"value="4" name="encuesta[2].Respuesta" />
+                        <label data-toggle="tooltip" data-placement="top" title="Excelente!" class="star star-4" for="star-12"></label>
+                        <input class="star star-3" id="star-13" type="radio" value="3" name="encuesta[2].Respuesta" />
+                        <label  data-toggle="tooltip" data-placement="top" title="Bueno!" class="star star-3" for="star-13"></label>
+                        <input class="star star-2" id="star-14" type="radio" value="2" name="encuesta[2].Respuesta" />
+                        <label  data-toggle="tooltip" data-placement="top" title="Regular!"class="star star-2" for="star-14"></label>
+                        <input class="star star-1" id="star-15" type="radio" value="1" name="encuesta[2].Respuesta" />
+                        <label data-toggle="tooltip" data-placement="top" title="Malo!" class="star star-1" for="star-15"></label>
+                    
+                    </div>
+                  </div>
+  
+  
+                </form>
+  
+              </div>
+              <div class="modal-footer">
+                
+                <button type="button" onclick="GuardarEncuesta()" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+    </div>
+    
+  
+    </div>
+    
+  
+  
+  <div  class="col-md-3"  style="height: 100%;" id="chatdiv">
+  
+    <!-- partial:index.partial.html -->
+    <div class="container ">
+      
+      <div class="chat">
+        <div class="chat-header clearfix">
+          <div id="profileImage"></div>
+          <div class="chat-about">
+            <div class="chat-with"> {{nombreRemisor}}</div>
+          </div>
+          <i class="fa fa-star"></i>
+        </div> <!-- end chat-header -->
+        
+        <div class="chat-history" id="chathistory">
+          <ul>
+          
+            
+          </ul>
+          
+        </div> <!-- end chat-history -->
+        
+        <div class="chat-message clearfix">
+            <img id="imagentumb" height="200" class="hidden">
+  
+          <textarea name="message-to-send" id="message-to-send" placeholder ="Escriba su mensaje" rows="3"></textarea>
+                  
+         
+             <input type="file" id="selectedFile" style="display: none;" />
+  
+          <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-file-image-o" onclick="document.getElementById('selectedFile').click();"></i> 
+          
+          <button>Enviar</button>
+    
+        </div> <!-- end chat-message -->
+        
+      </div> <!-- end chat -->
+      
+    </div> <!-- end container -->
+  
+    <!-- partial -->
+    <div id="privacy"></div>
+ 
+    
+    </div>
+  </div>
+  <div class="row">
+    
+    <div style="width: 100%; height: 10vh; ;background-color:white;" class="row">
+      <div id="icons" class="hidden" style="width: 50%;
+      margin-left: 40%;
+      margin-top: 1%;
+      position: static !important;">
+        <svg  style="margin-left: 2%;" id="mute-audio" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
+        <title>Title</title>
+          <circle cx="24" cy="24" r="34">
+            <title>Mute</title>
+          </circle>
+          <path class="on"  fill="white" transform="scale(0.6), translate(17,18)" d="M38 22h-3.4c0 1.49-.31 2.87-.87 4.1l2.46 2.46C37.33 26.61 38 24.38 38 22zm-8.03.33c0-.11.03-.22.03-.33V10c0-3.32-2.69-6-6-6s-6 2.68-6 6v.37l11.97 11.96zM8.55 6L6 8.55l12.02 12.02v1.44c0 3.31 2.67 6 5.98 6 .45 0 .88-.06 1.3-.15l3.32 3.32c-1.43.66-3 1.03-4.62 1.03-5.52 0-10.6-4.2-10.6-10.2H10c0 6.83 5.44 12.47 12 13.44V42h4v-6.56c1.81-.27 3.53-.9 5.08-1.81L39.45 42 42 39.46 8.55 6z" fill="white"/>
+          <path class="off"  fill="#68812a" transform="scale(0.6), translate(17,18)"  d="M24 28c3.31 0 5.98-2.69 5.98-6L30 10c0-3.32-2.68-6-6-6-3.31 0-6 2.68-6 6v12c0 3.31 2.69 6 6 6zm10.6-6c0 6-5.07 10.2-10.6 10.2-5.52 0-10.6-4.2-10.6-10.2H10c0 6.83 5.44 12.47 12 13.44V42h4v-6.56c6.56-.97 12-6.61 12-13.44h-3.4z"  fill="white"/>
+        </svg>
+        <svg  style="margin-left: 2%;" id="mute-video" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
+          <circle cx="24" cy="24" r="34">
+            <title>Apagar Video</title>
+          </circle>
+          <path class="on"  fill="#68812a" transform="scale(0.6), translate(17,16)" d="M40 8H15.64l8 8H28v4.36l1.13 1.13L36 16v12.36l7.97 7.97L44 36V12c0-2.21-1.79-4-4-4zM4.55 2L2 4.55l4.01 4.01C4.81 9.24 4 10.52 4 12v24c0 2.21 1.79 4 4 4h29.45l4 4L44 41.46 4.55 2zM12 16h1.45L28 30.55V32H12V16z" fill="white"/>
+          <path class="off"  fill="#68812a" transform="scale(0.6), translate(17,16)" d="M40 8H8c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm-4 24l-8-6.4V32H12V16h16v6.4l8-6.4v16z" fill="white"/>
+        </svg>
+        <svg style="margin-left: 2%;" id="fullscreen" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
+          <circle cx="24" cy="24" r="34">
+            <title>Ver Pantalla Completa</title>
+          </circle>
+          <path class="on"  fill="#68812a" transform="scale(0.8), translate(7,6)" d="M10 32h6v6h4V28H10v4zm6-16h-6v4h10V10h-4v6zm12 22h4v-6h6v-4H28v10zm4-22v-6h-4v10h10v-4h-6z" fill="white"/>
+          <path class="off"   fill="#68812a" transform="scale(0.8), translate(7,6)"  d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z" fill="white"/>
+        </svg>
+      
+       
+  
+  
+  
+          <svg  style="margin-left: 2%;" id="togglePipButton" class="hidden"  xmlns="http://www.w3.org/2000/svg"  width="48" height="48" viewbox="-10 -10 68 68">
+            <circle cx="24" cy="24" r="34">
+              <title>picture and picture</title>
+            </circle>
+     -  <path class="off"   fill="#68812a" transform="scale(0.2), translate(30,30)"   d="M10.32,27.52c-0.91375,0 -1.78719,0.36281 -2.43219,1.00781c-0.645,0.645 -1.00781,1.51844 -1.00781,2.43219v59.39375c1.00781,-0.57781 2.19031,-0.91375 3.44,-0.91375h3.44v-55.04h144.48v116.96h-55.04v3.44c0,1.24969 -0.33594,2.43219 -0.91375,3.44h59.39375c0.91375,0 1.78719,-0.36281 2.43219,-1.00781c0.645,-0.645 1.00781,-1.51844 1.00781,-2.43219v-123.84c0,-0.91375 -0.36281,-1.78719 -1.00781,-2.43219c-0.645,-0.645 -1.51844,-1.00781 -2.43219,-1.00781zM123.84,44.72c-1.23625,-0.01344 -2.39187,0.63156 -3.02344,1.70656c-0.61813,1.075 -0.61813,2.39187 0,3.46687c0.63156,1.075 1.78719,1.72 3.02344,1.70656h12.33563l-35.40781,35.40781c-0.90031,0.86 -1.26313,2.15 -0.94063,3.34594c0.30906,1.20938 1.24969,2.15 2.45906,2.45906c1.19594,0.3225 2.48594,-0.04031 3.34594,-0.94063l35.40781,-35.40781v12.33562c-0.01344,1.23625 0.63156,2.39188 1.70656,3.02344c1.075,0.61813 2.39187,0.61813 3.46687,0c1.075,-0.63156 1.72,-1.78719 1.70656,-3.02344v-24.08zM10.32,96.32c-1.89469,0 -3.44,1.54531 -3.44,3.44v55.04c0,1.89469 1.54531,3.44 3.44,3.44h82.56c1.89469,0 3.44,-1.54531 3.44,-3.44v-55.04c0,-1.89469 -1.54531,-3.44 -3.44,-3.44z"></path>
+  
+     <path  class="on"   fill="#68812a" transform="scale(0.2), translate(30,30)"  d="M10.32,27.52c-0.91375,0 -1.78719,0.36281 -2.43219,1.00781c-0.645,0.645 -1.00781,1.51844 -1.00781,2.43219v59.39375c1.00781,-0.57781 2.19031,-0.91375 3.44,-0.91375h3.44v-55.04h144.48v116.96h-55.04v3.44c0,1.24969 -0.33594,2.43219 -0.91375,3.44h59.39375c0.91375,0 1.78719,-0.36281 2.43219,-1.00781c0.645,-0.645 1.00781,-1.51844 1.00781,-2.43219v-123.84c0,-0.91375 -0.36281,-1.78719 -1.00781,-2.43219c-0.645,-0.645 -1.51844,-1.00781 -2.43219,-1.00781zM123.84,44.72c-1.23625,-0.01344 -2.39187,0.63156 -3.02344,1.70656c-0.61813,1.075 -0.61813,2.39187 0,3.46687c0.63156,1.075 1.78719,1.72 3.02344,1.70656h12.33563l-35.40781,35.40781c-0.90031,0.86 -1.26313,2.15 -0.94063,3.34594c0.30906,1.20938 1.24969,2.15 2.45906,2.45906c1.19594,0.3225 2.48594,-0.04031 3.34594,-0.94063l35.40781,-35.40781v12.33562c-0.01344,1.23625 0.63156,2.39188 1.70656,3.02344c1.075,0.61813 2.39187,0.61813 3.46687,0c1.075,-0.63156 1.72,-1.78719 1.70656,-3.02344v-24.08zM10.32,96.32c-1.89469,0 -3.44,1.54531 -3.44,3.44v55.04c0,1.89469 1.54531,3.44 3.44,3.44h82.56c1.89469,0 3.44,-1.54531 3.44,-3.44v-55.04c0,-1.89469 -1.54531,-3.44 -3.44,-3.44zM13.76,103.2h75.68v48.16h-75.68z"></path>
+  
+            
+              </svg>
+  
+        <svg  style="margin-left: 2%;" id="hangup" class="hidden" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="-10 -10 68 68">
+          <circle cx="24" cy="24" r="34">
+            <title>Colgar</title>
+          </circle>
+          <path  fill="#68812a" transform="scale(0.7), translate(11,10)" d="M24 18c-3.21 0-6.3.5-9.2 1.44v6.21c0 .79-.46 1.47-1.12 1.8-1.95.98-3.74 2.23-5.33 3.7-.36.35-.85.57-1.4.57-.55 0-1.05-.22-1.41-.59L.59 26.18c-.37-.37-.59-.87-.59-1.42 0-.55.22-1.05.59-1.42C6.68 17.55 14.93 14 24 14s17.32 3.55 23.41 9.34c.37.36.59.87.59 1.42 0 .55-.22 1.05-.59 1.41l-4.95 4.95c-.36.36-.86.59-1.41.59-.54 0-1.04-.22-1.4-.57-1.59-1.47-3.38-2.72-5.33-3.7-.66-.33-1.12-1.01-1.12-1.8v-6.21C30.3 18.5 27.21 18 24 18z" fill="white"/>
+        </svg>
+       
+      </div>
+      
+      <div id="icons" class="active"  style="    float: right;
+      position: sticky;
+      margin-right: 6%;
+      margin-top: 1%;">
+        <svg  style="margin-left: 2%; background-color: white;" id="chatSvg"  xmlns="http://www.w3.org/2000/svg"  width="48" height="48" viewbox="-10 -10 68 68">
+          <circle fill="white" cx="24" cy="24" r="34">
+            <title>Ocultar Chat</title>
+          </circle>
+           <path class="on"  fill="#68812a" transform="scale(0.2), translate(30,30)"  d="M26.875,21.5c-8.86035,0 -16.125,7.26465 -16.125,16.125v86c0,8.86035 7.26465,16.125 16.125,16.125h16.125v26.16114l39.2627,-26.16114h49.88672l10.49804,10.54004l7.64258,-7.64258l-120.72754,-120.68554v-0.46192zM43.88183,21.5l10.75,10.75h79.74317c2.98145,0 5.375,2.43555 5.375,5.375v79.74317l10.07813,10.07813c0.29395,-1.25977 0.67188,-2.47754 0.67188,-3.82129v-86c0,-8.90234 -7.22266,-16.125 -16.125,-16.125zM25.02734,32.62793l31.87207,31.87207h-3.14942v10.75h13.89942l10.75,10.75h-24.64942v10.75h35.39942l32.25,32.25h-42.41211l-25.2373,16.83886v-16.83886h-26.875c-3.02344,0 -5.375,-2.35156 -5.375,-5.375v-86c0,-2.35156 1.46973,-4.24121 3.52734,-4.99707zM32.25,64.5v10.75h10.75v-10.75zM86.88183,64.5l10.75,10.75h31.36817v-10.75zM32.25,86v10.75h10.75v-10.75zM108.38183,86l10.75,10.75h9.86817v-10.75z"></path>
+    
+              <path class="off"  fill="#68812a" transform="scale(0.2), translate(30,30)"  d="M28.66667,21.5c-7.88333,0 -14.26335,6.45 -14.26335,14.33333l-0.05599,85.986c0,7.91917 6.41417,14.34733 14.33333,14.34733h14.31934v28.66667l28.66667,-28.66667h71.66667c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-86c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333zM93.16667,50.16667l28.66667,28.66667l-28.66667,28.66667v-21.5h-43v-14.33333h43z" fill="white"></path>
+            
+            </svg>
+      </div>
 
-  <!-- partial -->
-  <div id="privacy"></div>
-  {{include_loopback_js}}
-
-  <script src="/js/apprtc.debug.js"></script>
-  <script src="/js/cronometro.js"></script>
-  <script>
-
-   debugger
-    {{#if error_messages}}
-    var errorMessages = {{error_messages}};
-    {{else}}
-    var errorMessages = [];
-    {{/if}}
-    {{#if warning_messages}}
-    var warningMessages = {{warning_messages}};
-    {{else}}
-    var warningMessages = [];
-    {{/if}}
-    {{#if version_info}}
-    var versionInfo = {{version_info}};
-    {{else}}
-    var versionInfo = [];
-    {{/if}}
-    var loadingParams = {
-      nombreRemisor:'{{nombreRemisor}}',
-      url:'{{url}}',
-      tipo:'{{tipo}}',
-      remisorChat:'{{remisor}}',
-      clientid:'{{client_id}}',
-      errorMessages: errorMessages,
-      warningMessages: warningMessages,
-      isLoopback: {{is_loopback}},
-      {{#if room_id}}
-      roomId: '{{room_id}}',
-      roomLink: '{{room_link}}',
-      {{/if}}
-      mediaConstraints: {{{media_constraints}}},
-      offerOptions: {{{offer_options}}},
-      peerConnectionConfig: {{{pc_config}}},
-      peerConnectionConstraints: {{{pc_constraints}}},
-      iceServerRequestUrl: '{{turn_url}}',
-      iceServerTransports: '{{turn_transports}}',
-      wssUrl: '{{wss_url}}',
-      wssPostUrl: '{{wss_post_url}}',
-      bypassJoinConfirmation: {{bypass_join_confirmation}},
-      versionInfo: versionInfo
-    };
-    var appController;
-    function initialize() {
-      if (document.visibilityState === 'prerender') {
-        document.addEventListener('visibilitychange', onVisibilityChange);
-        return;
-      }
-      appController = new AppController(loadingParams);
-    }
-    function onVisibilityChange() {
-      if (document.visibilityState === 'prerender') {
-        return;
-      }
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-      initialize();
-    }
-    initialize();
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
-  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script  src="/js/chat.js"></script>
+    </div>
   
   </div>
-</div>
+  </div>
+
 </body>
 
 </html>
 
+{{include_loopback_js}}
+  
+<script src="/js/apprtc.debug.js"></script>
+<script src="/js/cronometro.js"></script>
 <script>
 
-
-
-
+ debugger
+  {{#if error_messages}}
+  var errorMessages = {{error_messages}};
+  {{else}}
+  var errorMessages = [];
+  {{/if}}
+  {{#if warning_messages}}
+  var warningMessages = {{warning_messages}};
+  {{else}}
+  var warningMessages = [];
+  {{/if}}
+  {{#if version_info}}
+  var versionInfo = {{version_info}};
+  {{else}}
+  var versionInfo = [];
+  {{/if}}
+  var loadingParams = {
+    nombreRemisor:'{{nombreRemisor}}',
+    url:'{{url}}',
+    tipo:'{{tipo}}',
+    remisorChat:'{{remisor}}',
+    clientid:'{{client_id}}',
+    errorMessages: errorMessages,
+    warningMessages: warningMessages,
+    isLoopback: {{is_loopback}},
+    {{#if room_id}}
+    roomId: '{{room_id}}',
+    roomLink: '{{room_link}}',
+    {{/if}}
+    mediaConstraints: {{{media_constraints}}},
+    offerOptions: {{{offer_options}}},
+    peerConnectionConfig: {{{pc_config}}},
+    peerConnectionConstraints: {{{pc_constraints}}},
+    iceServerRequestUrl: '{{turn_url}}',
+    iceServerTransports: '{{turn_transports}}',
+    wssUrl: '{{wss_url}}',
+    wssPostUrl: '{{wss_post_url}}',
+    bypassJoinConfirmation: {{bypass_join_confirmation}},
+    versionInfo: versionInfo
+  };
+  var appController;
+  function initialize() {
+    if (document.visibilityState === 'prerender') {
+      document.addEventListener('visibilitychange', onVisibilityChange);
+      return;
+    }
+    appController = new AppController(loadingParams);
+  }
+  function onVisibilityChange() {
+    if (document.visibilityState === 'prerender') {
+      return;
+    }
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    initialize();
+  }
+  initialize();
 </script>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script  src="/js/chat.js"></script>

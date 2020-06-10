@@ -1,6 +1,8 @@
 const video = document.getElementById('remote-video');
 const togglePipButton = document.getElementById('togglePipButton');
 
+
+const togglechat =document.querySelector("#chatSvg");  
 // Hide button if Picture-in-Picture is not supported or disabled.
 togglePipButton.hidden = !document.pictureInPictureEnabled ||
   video.disablePictureInPicture;
@@ -27,6 +29,27 @@ togglePipButton.addEventListener('click', function() {
   }
 });
 
+var elements = Array.from(document.querySelectorAll('chatSvg'));
+debugger
+
+togglechat.addEventListener('click', function() {
+
+    debugger
+    if($("#chatdiv").css('display') != 'none'){
+    
+      $("#chatdiv").addClass("hidden");
+      $("#vidi").removeClass("col-md-9")
+    }else{
+      $("#chatdiv").removeClass("hidden");
+      $("#vidi").addClass("col-md-9")
+    }
+    
+    if (this.classList.contains("on")) {
+      this.classList.remove("on");
+    } else {
+      this.classList.add("on");
+    }
+    });
 
 
 

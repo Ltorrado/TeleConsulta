@@ -3576,7 +3576,7 @@ var AppController = function(loadingParams) {
   this.muteAudioIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteAudioSvg);
   this.muteVideoIconSet_ = new AppController.IconSet_(UI_CONSTANTS.muteVideoSvg);
   this.fullscreenIconSet_ = new AppController.IconSet_(UI_CONSTANTS.fullscreenSvg);
-  this.ChatIconSet_ = new AppController.IconSet_(UI_CONSTANTS.chatSvg);
+  //this.ChatIconSet_ = new AppController.IconSet_(UI_CONSTANTS.chatSvg);
   this.pictureIcon = $(UI_CONSTANTS.pictureanpicture);
   this.chatVivaDiv_ = $(UI_CONSTANTS.chatViva);
   debugger
@@ -3912,17 +3912,17 @@ AppController.prototype.toggleAudioMute_ = function() {
   this.muteAudioIconSet_.toggle();
 };
 AppController.prototype.toggleChat_ = function() {
-  debugger
-  if($("#chatdiv").css('display') != 'none'){
-    this.hide_(this.chatVivaDiv_);
+  // debugger
+  // if($("#chatdiv").css('display') != 'none'){
+  //   this.hide_(this.chatVivaDiv_);
   
-    $("#vidi").removeClass("col-md-9")
-  }else{
-    this.show_(this.chatVivaDiv_);
-    $("#vidi").addClass("col-md-9")
-  }
+  //   $("#vidi").removeClass("col-md-9")
+  // }else{
+  //   this.show_(this.chatVivaDiv_);
+  //   $("#vidi").addClass("col-md-9")
+  // }
   
-  this.ChatIconSet_.toggle();
+  // this.ChatIconSet_.toggle();
 };
 
 
@@ -3964,6 +3964,9 @@ AppController.prototype.shrinkVideo_ = function(element) {
 };
 AppController.prototype.activate_ = function(element) {
   element.classList.add("active");
+};
+AppController.prototype.activateIcons_ = function(element) {
+  element.classList.add("activateIcons_");
 };
 AppController.prototype.deactivate_ = function(element) {
   element.classList.remove("active");
