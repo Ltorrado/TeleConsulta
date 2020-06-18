@@ -114,7 +114,7 @@
         </div> 
         <div id="info-div" style="display: none;">Code for Node AppRTC is available from <a href="http://github.com/webrtc/apprtc" title="GitHub repo for AppRTC">github.com/webrtc/apprtc</a></div>
         <div id="status-div"></div>
-        <div id="rejoin-div" class="hidden"><span>Has abandonado la llamada.</span> <button id="rejoin-button" style="display: none;">REJOIN</button><button id="new-room-button" style="display: none;">NEW ROOM</button><button id="calificacion-button">Califica tu experiencia</button></div>
+        <div id="rejoin-div" class="hidden"><span>Has abandonado la llamada.</span> <button id="rejoin-button" style="display: none;">REJOIN</button><button id="new-room-button" style="display: none;">NEW ROOM</button><button onclick="window.location.reload(false); " id="calificacion-button">Reunirse</button></div>
       </footer>
    
       <div>
@@ -268,7 +268,7 @@
   
               </div>
               <div class="modal-footer">
-                
+                <button type="button" onclick="window.location.reload(false); " class="btn btn-primary">Reunirse</button>
                 <button type="button" onclick="GuardarEncuesta()" class="btn btn-primary">Guardar</button>
               </div>
             </div>

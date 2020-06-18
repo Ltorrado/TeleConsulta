@@ -3746,16 +3746,24 @@ AppController.prototype.hangup_ = function() {
 };
 
 AppController.prototype.onRemoteHangup_ = function() {
+
+  
   debugger
+  videoRemoto.srcObject=null;
   this.displayStatus_("El otro participante de la conferencia ha cerrado su sesión");
   this.transitionToWaiting_(); 
   this.call_.onRemoteHangup();
-  if(this.loadingParams_.tipo=="P"){
-    $("#CalificacionLlamada").modal('toggle');
-  }
+  this.call_.seCayoServicio();
   seguirContandoTiempo=false;
     var path =  "/colgarremoto/"+this.loadingParams_.url ;
     sendAsyncUrlRequest("POST", path)
+  if(this.loadingParams_.tipo=="P"){
+    $("#CalificacionLlamada").modal('toggle');
+  }else{
+    window.location.reload(false); 
+  }
+
+    
 };
 
 
@@ -4055,12 +4063,16 @@ var Call = function(params) {
   this.requestMediaAndIceServers_();
 };
 
-
+var videoRemoto;
 Call.prototype.seCayoServicio = function() {
-debugger
-this.hangup(false);
-debugger
-this.restart(this.params_.previousRoomId);
+  debugger
+if(videoRemoto.srcObject== undefined){
+  debugger
+  this.hangup(false);
+  debugger
+  this.restart(this.params_.previousRoomId);
+}
+
 
 }
 
@@ -4419,6 +4431,7 @@ var Constants = {WS_ACTION:"ws", XHR_ACTION:"xhr", QUEUEADD_ACTION:"addToQueue",
 var InfoBox = function(infoDiv, call, versionInfo) {
   this.infoDiv_ = infoDiv;
   this.remoteVideo_ = document.getElementById("remote-video");
+  videoRemoto = this.remoteVideo_;
   this.localVideo_ = document.getElementById("mini-video");
   this.call_ = call;
   this.versionInfo_ = versionInfo;
@@ -5588,6 +5601,7 @@ SignalingChannel.prototype.open = function() {
       this.websocket_ = new RemoteWebSocket(this.wssUrl_, this.wssPostUrl_);
     } else {
       this.websocket_ = new WebSocket(this.wssUrl_);
+  
     }
     this.websocket_.onopen = function() {
       trace("Signaling channel opened.");
@@ -5595,10 +5609,13 @@ SignalingChannel.prototype.open = function() {
         trace("Signaling channel error.");
       };
       this.websocket_.onclose = function(event) {
+        debugger
        
         trace("Channel closed with code:" + event.code + " reason:" + event.reason);
-  
-        this.cerradoInesperado('');
+        if(event.code="1006"){
+          this.cerradoInesperado('');
+        }
+      
       };
       if (this.clientId_ && this.roomId_) {
         this.register(this.roomId_, this.clientId_);
@@ -5609,6 +5626,7 @@ SignalingChannel.prototype.open = function() {
       this.close();
  
       trace("se serrro esa vaian nojoda" + event.data);
+      
       this.cerradoInesperado();
     }.bind(this);
 
