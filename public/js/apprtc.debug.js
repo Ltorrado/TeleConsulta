@@ -5613,7 +5613,7 @@ SignalingChannel.prototype.open = function() {
        
         trace("Channel closed with code:" + event.code + " reason:" + event.reason);
         if(event.code="1006"){
-          this.cerradoInesperado('');
+          this.cerradoInesperado();
         }
       
       };
