@@ -4070,7 +4070,7 @@ if(videoRemoto.srcObject== undefined){
   debugger
   this.hangup(false);
   debugger
-  this.restart(this.params_.previousRoomId);
+  this.start(this.params_.previousRoomId);
 }
 
 
