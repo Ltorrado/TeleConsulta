@@ -5623,9 +5623,9 @@ SignalingChannel.prototype.open = function() {
       resolve();
     }.bind(this);
     this.websocket_.cerradoInesperado = function(event) {
-      this.close();
+     
  
-      trace("se serrro esa vaian nojoda" + event.data);
+      trace("se serrro esa vaian nojoda" );
       
       this.cerradoInesperado();
     }.bind(this);
