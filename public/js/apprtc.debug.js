@@ -3707,7 +3707,7 @@ AppController.prototype.setupUi_ = function() {
 };
 AppController.prototype.finishCallSetup_ = function(roomId) {
   debugger
-  this.call_.start(roomId);
+  this.call_.restart(roomId);
   debugger
   this.setupUi_();
   if (!isChromeApp()) {
